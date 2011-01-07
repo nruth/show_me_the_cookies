@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "show_me_the_cookies"
   gem.homepage = "http://github.com/nruth/show_me_the_cookies"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Cookie manipulation for Capybara drivers}
+  gem.description = %Q{Cookie manipulation for Capybara drivers -- viewing, deleting, ...}
   gem.email = "nick.rutherford@gmail.com"
   gem.authors = ["Nicholas Rutherford"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
