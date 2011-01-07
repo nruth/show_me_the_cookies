@@ -1,5 +1,5 @@
 module ShowMeTheCookies
-  
+
   require 'show_me_the_cookies/culerity'
   require 'show_me_the_cookies/rack_test'
   require 'show_me_the_cookies/selenium'
@@ -20,7 +20,7 @@ module ShowMeTheCookies
   def self.session_cookie_name=(name)
     @@session_cookie_name = name
   end
-  
+
   def show_me_the_cookies
     announce "Current cookies: #{current_driver_adapter.show_me_the_cookies}"
   end
@@ -34,11 +34,11 @@ module ShowMeTheCookies
 
 private
   @@session_cookie_name = nil
-  
+
   def self.unsupported_browser_spam
     raise "unsupported driver, use rack::test, selenium/webdriver or culerity"
   end
-  
+
   # Rails.application.config.session_options[:key] #for rails 3, courtesy of https://github.com/ilpoldo
   #else just hard code it as follows
   #'_appname_session' #or check in browser for what your app is using
