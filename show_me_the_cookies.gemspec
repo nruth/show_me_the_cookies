@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{show_me_the_cookies}
-  s.version = "0.1.2"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nicholas Rutherford"]
@@ -14,14 +14,14 @@ Gem::Specification.new do |s|
   s.email = %q{nick.rutherford@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     ".rspec",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "features/show_me_the_cookies.feature",
@@ -30,7 +30,8 @@ Gem::Specification.new do |s|
     "lib/show_me_the_cookies.rb",
     "lib/show_me_the_cookies/culerity.rb",
     "lib/show_me_the_cookies/rack_test.rb",
-    "lib/show_me_the_cookies/selenium.rb"
+    "lib/show_me_the_cookies/selenium.rb",
+    "show_me_the_cookies.gemspec"
   ]
   s.homepage = %q{http://github.com/nruth/show_me_the_cookies}
   s.licenses = ["MIT"]
