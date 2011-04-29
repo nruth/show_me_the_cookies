@@ -1,18 +1,6 @@
-# rcov generated
-coverage
-
-# rdoc generated
-rdoc
-
-# yard generated
-doc
-.yardoc
-
-# bundler
+pkg/*
+*.gem
 .bundle
-
-# jeweler generated
-pkg
 
 # don't vc this, http://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
 Gemfile.lock
