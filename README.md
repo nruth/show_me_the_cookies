@@ -10,79 +10,99 @@ Rails session cookies look something like '\_appname\_session', and can be found
 Credits and Acknowledgements
 ==================================
 
-Initial release as a gist [here](https://gist.github.com/484787), early development sponsored by [Medify](www.medify.co.uk).
+Initial release as a gist [here](https://gist.github.com/484787), early development sponsored by [Medify](http://www.medify.co.uk).
 
 Contributions have been made by:
 
   * [Leandro Pedroni](https://github.com/ilpoldo) -- Rails 3 session cookie detection (no longer in the code but present in readme)
   * [Matthew Nielsen](https://github.com/xunker) -- added culerity support & encouraged gem release
 
-
-Example Usage
-=============
-
-Feature
--------
-
-    @javascript @announce
-    Scenario: remembering users so they don't have to log in again for a while
-      Given an activated member exists with forename: "Paul", surname: "Smith", email: "paul_smith_91@gmail.com", password: "bananabanana"
-      When I go to the dashboard
-      Then I should see "Existing Member Login"
-      When I fill in "Email" with "paul_smith_91@gmail.com" within "#member_login"
-      And I fill in "Password" with "bananabanana" within "#member_login"
-      And I check "Remember me"
-      And I press "Sign in"
-      Then I should be on the dashboard
-      And I should see "Logged in as Paul Smith"
-      And I should see "Sign out"
-
-      Given I close my browser (clearing the Medify session)
-      When I come back next time
-      And I go to the dashboard
-      Then I should see "Logged in as Paul Smith"
-      And I should see "Sign out"
-
-    @rack_test @announce
-    Scenario: don't remember users across browser restarts if they don't want it
-      Given an activated member exists with forename: "Paul", surname: "Smith", email: "paul_smith_91@gmail.com", password: "bananabanana"
-      When I go to the dashboard
-      Then I should see "Existing Member Login"
-      When I fill in "Email" with "paul_smith_91@gmail.com" within "#member_login"
-      And I fill in "Password" with "bananabanana" within "#member_login"
-      And I uncheck "Remember me"
-      And I press "Sign in"
-      Then I should be on the dashboard
-      And I should see "Logged in as Paul Smith"
-      And I should see "Sign out"
-
-      Given I close my browser (clearing the Medify session)
-      When I come back next time
-      And I go to the dashboard
-      Then I should see "Existing Member Login"
-      And I should not see "Logged in as Paul Smith"
-      And I should not see "Sign out"
-
 gem install
 -----------
 gem install show\_me\_the\_cookies, or whatever fits your situation.
 
+RSpec
+=====
+
+in step_helper or your support directory:
+
+    RSpec.configure do |config|
+      config.include ShowMeTheCookies, :type => :request
+    end
+
+Example usage
+--------------
+
+
+    it "remember-me is on by default" do
+      member = Member.make
+      visit dashboard_path
+      page.should have_content "Login"
+      within '#member_login' do
+        fill_in "Email", :with => member.email
+        fill_in "Password", :with => member.password
+        click_on "Sign in"
+      end
+  
+      page.should have_content("Dashboard")
+      page.should have_no_content("Login")
+      #     Given I close my browser (clearing the session)
+      delete_cookie Rails.application.config.session_options[:key]
+
+      #     When I come back next time
+      visit dashboard_path
+      page.should have_content("Dashboard")
+      page.should have_no_content("Login")
+    end
+
+
+Cucumber
+========
+
+Install by loading the gem and adding the following to your stepdefs or support files
+
+    World(ShowMeTheCookies)
+    Before('@announce') do
+      @announce = true
+    end
+
+Example Usage
+-------------
+
+    @javascript @announce
+    Scenario: remembering users so they don't have to log in again for a while
+      Given I am a site member
+      When I go to the dashboard
+      And I log in with the Remember Me option checked
+      Then I should see "Welcome back"
+      
+      When I close my browser (clearing the session)
+      And I return to the dashboard url
+      Then I should see "Welcome back"
+
+    @rack_test @announce
+    Scenario: don't remember users across browser restarts if they don't want it
+      Given I am a site member
+      When I go to the dashboard
+      And I log in without the Remember Me option checked
+      Then I should see "Welcome back"
+    
+      When I close my browser (clearing the session)
+      And I return to the dashboard url
+      Then I should see the log-in screen
+
+
 stepdef file
 ------------
 
-call it whatever you like, mine is called cookie_steps.rb
+for example cookie_steps.rb
 
     Then /^show me the cookies!$/ do
       show_me_the_cookies
     end
 
     Given /^I close my browser \(clearing the Medify session\)$/ do
-      delete_cookie '_medify_session' # or in rails 3 use Rails.application.config.session_options[:key]
-    end
-
-    World(ShowMeTheCookies)
-    Before('@announce') do
-      @announce = true
+      delete_cookie '_appname_session' # or in rails 3 use Rails.application.config.session_options[:key]
     end
 
 Contributing
