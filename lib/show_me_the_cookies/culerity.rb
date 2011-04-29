@@ -1,6 +1,6 @@
 class ShowMeTheCookies::Culerity
-  def initialize(browser)
-    @browser = browser
+  def initialize(driver)
+    @browser = driver.browser
   end
 
   def show_me_the_cookies

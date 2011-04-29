@@ -5,15 +5,16 @@ module ShowMeTheCookies
   require 'show_me_the_cookies/selenium'
 
   def current_driver_adapter
-    case (current_driver = Capybara.current_session.driver)
-    when Capybara::Driver::Selenium
-      ShowMeTheCookies::Selenium.new(current_driver.browser)
-    when Capybara::Driver::RackTest
-      ShowMeTheCookies::RackTest.new(current_driver)
-    when Capybara::Driver::Culerity
-      ShowMeTheCookies::Culerity.new(current_driver.browser)
+    driver = Capybara.current_session.driver
+    case Capybara.current_driver
+    when :selenium
+      ShowMeTheCookies::Selenium.new driver
+    when :rack_test
+      ShowMeTheCookies::RackTest.new driver
+    when :culerity
+      ShowMeTheCookies::Culerity.new driver
     else
-      unsupported_driver_spam
+      raise "unsupported driver, use rack::test, selenium/webdriver or culerity"
     end
   end
 
@@ -30,8 +31,4 @@ module ShowMeTheCookies
 
 private
   @@session_cookie_name = nil
-
-  def self.unsupported_browser_spam
-    raise "unsupported driver, use rack::test, selenium/webdriver or culerity"
-  end
 end

@@ -1,6 +1,6 @@
 class ShowMeTheCookies::Selenium
-  def initialize(browser)
-    @browser = browser
+  def initialize(driver)
+    @browser = driver.browser
     self
   end
 
