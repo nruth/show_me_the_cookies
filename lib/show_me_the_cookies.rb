@@ -19,14 +19,14 @@ module ShowMeTheCookies
   end
 
   def show_me_the_cookies
-    announce "Current cookies: #{current_driver_adapter.show_me_the_cookies}"
+    puts "Current cookies: #{current_driver_adapter.show_me_the_cookies}"
   end
 
   def delete_cookie(cookie_name)
-    announce current_driver_adapter.show_me_the_cookies if @announce
+    puts current_driver_adapter.show_me_the_cookies if @announce
     current_driver_adapter.delete_cookie(cookie_name)
-    announce "Deleted cookie: #{cookie_name}" if @announce
-    announce current_driver_adapter.show_me_the_cookies if @announce
+    puts "Deleted cookie: #{cookie_name}" if @announce
+    puts current_driver_adapter.show_me_the_cookies if @announce
   end
 
 private
