@@ -9,7 +9,9 @@ class ShowMeTheCookies::RackTest
 
   def delete_cookie(cookie_name)
     cookie_jar.instance_variable_get(:@cookies).reject! do |existing_cookie|
-      existing_cookie.name.downcase == cookie_name
+      # See http://j-ferguson.com/testing/bdd/hacking-capybara-cookies/
+      # catch session cookies/no expiry (nil) and past expiry (true)
+      existing_cookie.expired? != false
     end
   end
 
