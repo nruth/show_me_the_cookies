@@ -7,6 +7,10 @@ module ShowMeTheCookies
     current_driver_adapter.show_me_the_cookies
   end
 
+  def show_me_the_cookie(cookie_name)
+    current_driver_adapter.show_me_the_cookie(cookie_name)
+  end
+
   def show_me_the_cookies
     warn "DEPRECATION: show_me_the_cookies -- use inspect_cookies to grab the string and puts yourself"
     puts "Current cookies: #{inspect_cookies}"

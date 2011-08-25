@@ -4,6 +4,10 @@ class ShowMeTheCookies::Selenium
     self
   end
 
+  def show_me_the_cookie(cookie_name)
+    @browser.manage.all_cookies[cookie_name]
+  end
+
   def show_me_the_cookies
     @browser.manage.all_cookies.map(&:inspect).join("\n")
   end

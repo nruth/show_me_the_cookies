@@ -3,6 +3,10 @@ class ShowMeTheCookies::RackTest
     @rack_test_driver = rack_test_driver
   end
 
+  def show_me_the_cookie(cookie_name)
+    cookie_jar.instance_variable_get(:@cookies)[cookie_name]
+  end
+
   def show_me_the_cookies
     cookie_jar.instance_variable_get(:@cookies).map(&:inspect).join("\n")
   end
