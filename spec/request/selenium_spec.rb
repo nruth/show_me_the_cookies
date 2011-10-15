@@ -1,9 +1,9 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
 
-describe "RackTest", :type => :request do
+describe "Selenium", :type => :request do
   before(:each) do
-    Capybara.current_driver = :rack_test
+    Capybara.current_driver = :selenium
   end
 
   describe "the testing rig" do
