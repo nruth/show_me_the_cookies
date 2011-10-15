@@ -94,16 +94,19 @@ Install by loading the gem and adding the following to your stepdefs or support 
       expire_cookies
     end
 
-Contributing
-============
+## Contributing
 
 Use github issues for discussion. Contributions via small, testable (preferably tested), pull requests.
 
 Code-style comments, refactoring, tests and new features welcome (roughly in that order :).
 
+## Addendum
 
-History, Credits, and Acknowledgements
-=====================================
+At time of writing, Rails session cookies looked something like '\_appname\_session', 
+and can be found with browser resource tracker (e.g. firebug) or using Rails 3's 
+Rails.application.config.session_options[:key]
+
+## History, Credits, and Acknowledgements
 
 Original development took place when testing Devise 0.1's "Remember me" functionality under rails 2.3.x with capybara rack-test and/or selenium.
 
