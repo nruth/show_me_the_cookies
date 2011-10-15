@@ -2,10 +2,6 @@
 
 Some helpers for poking around at your browser's cookies in integration tests.
 
-At time of writing, Rails session cookies looked something like '\_appname\_session', 
-and can be found with browser resource tracker (e.g. firebug) or using Rails 3's 
-Rails.application.config.session_options[:key]
-
 ## API
 
     inspect_cookies # Returns a string summarising your current session cookie's k/v pairs,
