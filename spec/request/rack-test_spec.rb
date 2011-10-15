@@ -13,14 +13,29 @@ describe "RackTest", :type => :request do
     end
   end
 
-  describe "show_me_the_cookies" do
-    it "returns a driver-dependent string summary of the session cookies" do
-      visit '/foo/bar'
-      page.should have_content("Setting foo=bar")
-      inspect_cookies.should =~ /foo=bar/
-      visit '/myopic/mice'
-      page.should have_content("Setting myopic=mice")
-      inspect_cookies.should =~ /myopic=mice/
+  describe "API" do
+    describe "inspect_cookies" do
+      it "returns a driver-dependent string summary of the session cookie's k/v pairs" do
+        visit '/set/foo/bar'
+        page.should have_content("Setting foo=bar")
+        inspect_cookies.should match /foo=bar/
+        visit '/set/myopic/mice'
+        page.should have_content("Setting myopic=mice")
+        inspect_cookies.should match /myopic=mice/
+      end
+    end
+
+    describe "delete_cookie(cookie_name)" do
+      it "deletes a k/v pair from the session cookie" do
+        visit '/set/choc/milk'
+        visit '/set/extras/hazlenut'
+        inspect_cookies.should match /extras=hazlenut/
+        inspect_cookies.should match /choc=milk/
+        visit '/delete/choc'
+        page.should have_content("Deleting choc")
+        inspect_cookies.should match /extras=hazlenut/
+        inspect_cookies.should_not match /choc=milk/
+      end
     end
   end
 end
