@@ -26,6 +26,10 @@ module ShowMeTheCookies
   def delete_cookie(cookie_name)
     current_driver_adapter.delete_cookie(cookie_name)
   end
+  
+  def expire_cookies
+    current_driver_adapter.expire_cookies
+  end
 
 private
   @@session_cookie_name = nil

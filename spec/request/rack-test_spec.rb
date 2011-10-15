@@ -36,5 +36,25 @@ describe "RackTest", :type => :request do
         inspect_cookies.should_not match /choc=milk/
       end
     end
+
+    describe "expire_cookies" do
+      it "removes cookies without expiry times set" do
+        visit '/set/choc/milk'; inspect_cookies.should match /choc=milk/
+        visit '/set/extras/hazlenut'; inspect_cookies.should match /extras=hazlenut/
+        visit '/set/myopic/mice'; inspect_cookies.should match /myopic=mice/
+        expire_cookies
+        inspect_cookies.should_not match /choc=milk/
+        inspect_cookies.should_not match /extras=hazlenut/
+        inspect_cookies.should_not match /myopic=mice/
+      end
+
+      it "removes cookies which are past their expiry time" do
+        visit '/set_stale/rotting/fruit'; inspect_cookies.should match /rotting=fruit/
+        visit '/set_persistent/fresh/vegetables'; inspect_cookies.should match /fresh=vegetables/
+        expire_cookies
+        inspect_cookies.should_not match /rotting=fruit/
+        inspect_cookies.should match /fresh=vegetables/
+      end
+    end
   end
 end
