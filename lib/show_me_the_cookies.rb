@@ -23,16 +23,15 @@ module ShowMeTheCookies
   end
 
 private
+  def adapters
+    @@drivers ||= {
+      :selenium   => ShowMeTheCookies::Selenium,
+      :rack_test  => ShowMeTheCookies::RackTest
+    }
+  end
 
   def current_driver_adapter
-    driver = Capybara.current_session.driver
-    case Capybara.current_driver
-    when :selenium
-      ShowMeTheCookies::Selenium.new driver
-    when :rack_test
-      ShowMeTheCookies::RackTest.new driver
-    else
-      raise "unsupported driver, use rack::test, selenium/webdriver or culerity"
-    end
+    adapter = adapters[Capybara.current_driver] || raise("Unsupported driver #{driver}, use one of #{drivers.keys}")
+    adapter.new(Capybara.current_session.driver)
   end
 end
