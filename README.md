@@ -6,6 +6,15 @@ At time of writing, Rails session cookies looked something like '\_appname\_sess
 and can be found with browser resource tracker (e.g. firebug) or using Rails 3's 
 Rails.application.config.session_options[:key]
 
+## API
+
+    inspect_cookies # Returns a string summarising your current session cookie's k/v pairs,
+                    # so you can see what's going on.
+    
+    delete_cookie "key" # Deletes a particular k/v pair from your session cookie.
+    
+    expire_cookies # Removes cookies which are either due to expire, or have no expiry set.
+
 ## Installation
 
 Add to your gemfile's test group:
@@ -38,7 +47,7 @@ In a request spec, using [Capybara](https://github.com/jnicklas/capybara)
       page.should have_content("Dashboard")
       page.should have_no_content("Login")
       #     Given I close my browser (clearing the session)
-      delete_cookie Rails.application.config.session_options[:key]
+      expire_cookies
 
       #     When I come back next time
       visit dashboard_path
@@ -82,11 +91,11 @@ Install by loading the gem and adding the following to your stepdefs or support 
 ### Stepdefs
 
     Then /^show me the cookies!$/ do
-      show_me_the_cookies
+      puts inspect_cookies
     end
 
     Given /^I close my browser \(clearing the session\)$/ do
-      delete_cookie '_appname_session' # or in rails 3 use Rails.application.config.session_options[:key]
+      expire_cookies
     end
 
 Contributing
