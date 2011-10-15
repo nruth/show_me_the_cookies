@@ -1,6 +1,4 @@
 module ShowMeTheCookies
-
-  require 'show_me_the_cookies/culerity'
   require 'show_me_the_cookies/rack_test'
   require 'show_me_the_cookies/selenium'
 
@@ -11,8 +9,6 @@ module ShowMeTheCookies
       ShowMeTheCookies::Selenium.new driver
     when :rack_test
       ShowMeTheCookies::RackTest.new driver
-    when :culerity
-      ShowMeTheCookies::Culerity.new driver
     else
       raise "unsupported driver, use rack::test, selenium/webdriver or culerity"
     end
