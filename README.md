@@ -1,28 +1,19 @@
-Show me the cookies
-===================
+# Show me the cookies
 
-Some helpers for cucumber stepdefs (or other situations) where you want to find out what is going on with your browser cookies.
+Some helpers for poking around at your browser's cookies in integration tests.
 
-Original development took place when testing Devise 0.1's "Remember me" functionality under rails 2.3.x with capybara rack-test and/or selenium.
+At time of writing, Rails session cookies looked something like '\_appname\_session', 
+and can be found with browser resource tracker (e.g. firebug) or using Rails 3's 
+Rails.application.config.session_options[:key]
 
-Rails session cookies look something like '\_appname\_session', and can be found with browser resource tracker (e.g. firebug) or using rails 3's Rails.application.config.session_options[:key]
+## Installation
 
-Credits and Acknowledgements
-==================================
+Add to your gemfile's test group:
 
-Initial release as a gist [here](https://gist.github.com/484787), early development sponsored by [Medify](http://www.medify.co.uk).
+gem "show\_me\_the\_cookies"
 
-Contributions have been made by:
 
-  * [Leandro Pedroni](https://github.com/ilpoldo) -- Rails 3 session cookie detection (no longer in the code but present in readme)
-  * [Matthew Nielsen](https://github.com/xunker) -- added culerity support & encouraged gem release
-
-gem install
------------
-gem install show\_me\_the\_cookies, or whatever fits your situation.
-
-RSpec
-=====
+## RSpec
 
 in step_helper or your support directory:
 
@@ -30,9 +21,9 @@ in step_helper or your support directory:
       config.include ShowMeTheCookies, :type => :request
     end
 
-Example usage
---------------
+### Example usage
 
+In a request spec, using [Capybara](https://github.com/jnicklas/capybara)
 
     it "remember-me is on by default" do
       member = Member.make
@@ -56,20 +47,16 @@ Example usage
     end
 
 
-Cucumber
-========
+## Cucumber
+
 
 Install by loading the gem and adding the following to your stepdefs or support files
 
     World(ShowMeTheCookies)
-    Before('@announce') do
-      @announce = true
-    end
 
-Example Usage
--------------
+### Features
 
-    @javascript @announce
+    @javascript
     Scenario: remembering users so they don't have to log in again for a while
       Given I am a site member
       When I go to the dashboard
@@ -80,7 +67,7 @@ Example Usage
       And I return to the dashboard url
       Then I should see "Welcome back"
 
-    @rack_test @announce
+    @rack_test
     Scenario: don't remember users across browser restarts if they don't want it
       Given I am a site member
       When I go to the dashboard
@@ -92,36 +79,32 @@ Example Usage
       Then I should see the log-in screen
 
 
-stepdef file
-------------
-
-for example cookie_steps.rb
+### Stepdefs
 
     Then /^show me the cookies!$/ do
       show_me_the_cookies
     end
 
-    Given /^I close my browser \(clearing the Medify session\)$/ do
+    Given /^I close my browser \(clearing the session\)$/ do
       delete_cookie '_appname_session' # or in rails 3 use Rails.application.config.session_options[:key]
     end
 
 Contributing
 ============
 
+Use github issues for discussion. Contributions via small, testable (preferably tested), pull requests.
+
 Code-style comments, refactoring, tests and new features welcome (roughly in that order :).
 
-When sending changes:
 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+History, Credits, and Acknowledgements
+=====================================
 
-Copyright
-============
-Copyright (c) 2011 Nicholas Rutherford. See LICENSE.txt for
-further details.
+Original development took place when testing Devise 0.1's "Remember me" functionality under rails 2.3.x with capybara rack-test and/or selenium.
 
+Initial release as a gist [here](https://gist.github.com/484787), early development sponsored by [Medify](http://www.medify.co.uk).
+
+Contributions outside of github have been made by:
+
+  * [Leandro Pedroni](https://github.com/ilpoldo) -- Rails 3 session cookie detection (no longer in the code but present in readme)
+  * [Matthew Nielsen](https://github.com/xunker) -- added culerity support & encouraged gem release
