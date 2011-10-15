@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe "RackTest", :type => :request do
   before(:each) do
-    Capybara.app = Sinatra::Application
     Capybara.current_driver = :rack_test
   end
 
