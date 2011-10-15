@@ -24,10 +24,7 @@ module ShowMeTheCookies
   end
 
   def delete_cookie(cookie_name)
-    puts current_driver_adapter.show_me_the_cookies if @announce
     current_driver_adapter.delete_cookie(cookie_name)
-    puts "Deleted cookie: #{cookie_name}" if @announce
-    puts current_driver_adapter.show_me_the_cookies if @announce
   end
 
 private
