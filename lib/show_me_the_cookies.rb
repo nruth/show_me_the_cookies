@@ -23,8 +23,7 @@ module ShowMeTheCookies
   end
 
 private
-  @@session_cookie_name = nil
-  
+
   def current_driver_adapter
     driver = Capybara.current_session.driver
     case Capybara.current_driver
