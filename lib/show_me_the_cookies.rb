@@ -14,8 +14,12 @@ module ShowMeTheCookies
     end
   end
 
+  def inspect_cookies
+    current_driver_adapter.show_me_the_cookies
+  end
+
   def show_me_the_cookies
-    puts "Current cookies: #{current_driver_adapter.show_me_the_cookies}"
+    puts "Current cookies: #{inspect_cookies}"
   end
 
   def delete_cookie(cookie_name)
