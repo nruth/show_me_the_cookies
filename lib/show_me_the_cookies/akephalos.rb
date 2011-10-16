@@ -4,19 +4,9 @@ class ShowMeTheCookies::Akephalos
     @browser = driver.browser
   end
 
-  def show_me_the_cookie(cookie_name)
+  def get_me_the_cookie(cookie_name)
     cookie = @browser.cookies[cookie_name.to_s]
     cookie && _translate_cookie(cookie)
-  end
-
-  def show_me_the_cookies
-    get_me_the_cookies.inspect
-  end
-
-  def cookie_names
-    document_cookie = @driver.evaluate_script("document.cookie")
-    pairs = document_cookie && document_cookie.split(/ *; */)
-    pairs.map { |pair| pair.split(/\=/)[0].strip }
   end
 
   def get_me_the_cookies
@@ -24,7 +14,7 @@ class ShowMeTheCookies::Akephalos
     # we use Javascript to get the document.cookie string, which is a poort
     # substitute (cf. HTTP only cookies), but it's better than nothing.
     #
-    cookie_names.map { |name| show_me_the_cookie(name) }
+    cookie_names.map { |name| get_me_the_cookie(name) }
   end
 
   def delete_cookie(cookie_name)
@@ -32,7 +22,12 @@ class ShowMeTheCookies::Akephalos
     @browser.cookies.delete(cookie) if cookie
   end
 
-  private
+private
+  def cookie_names
+    document_cookie = @driver.evaluate_script("document.cookie")
+    pairs = document_cookie && document_cookie.split(/ *; */)
+    pairs.map { |pair| pair.split(/\=/)[0].strip }
+  end
 
   def _translate_cookie(cookie)
     c = {:name => cookie.name.to_s, 
