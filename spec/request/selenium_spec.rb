@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
 
-describe "Selenium", :type => :request do
+describe "Selenium Webdriver", :type => :request do
   before(:each) do
     Capybara.current_driver = :selenium
   end
