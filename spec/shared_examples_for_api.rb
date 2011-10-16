@@ -1,34 +1,45 @@
 shared_examples "the API" do
   def cookies_should_contain(key, value)
-    key_present = inspect_cookies =~ /#{key}/
-    value_present = inspect_cookies =~ /#{value}/
+    key_present = get_me_the_cookies.any? {|c| c[:name] == key}
+    value_present = get_me_the_cookies.any? {|c| c[:value] == value}
     (key_present and value_present).should be_true
   end
 
   def cookies_should_not_contain(key, value)
-    key_present = inspect_cookies =~ /#{key}/
-    value_present = inspect_cookies =~ /#{value}/
+    key_present = get_me_the_cookies.any? {|c| c[:name] == key}
+    value_present = get_me_the_cookies.any? {|c| c[:value] == value}
     (key_present and value_present).should be_false
   end
 
-  describe "show_me_the_cookie" do
+  describe "get_me_the_cookie" do
     it "returns the cookie hash" do
       visit '/set/foo/bar'
-      show_me_the_cookie('foo')[:name].should == "foo"
-      show_me_the_cookie('foo')[:value].should == "bar"
-      show_me_the_cookie('foo')[:expires].should == nil
+      get_me_the_cookie('foo').should_include(:name => "foo", :value => "bar", :expires => nil)
     end
   end
 
-  describe "inspect_cookies" do
-    it "returns a driver-dependent string summary of the session cookie's k/v pairs" do
+  describe "show_me_the_cookie" do
+    it "inspects the cookie hash" do
+      visit '/set/foo/bar'
+      show_me_the_cookie('foo').should == get_me_the_cookie('foo').inspect
+    end
+  end
+
+  describe "get_me_the_cookies" do
+    it "returns an array of standardised cookie hashes" do
       visit '/set/foo/bar'
       page.should have_content("Setting foo=bar")
-      cookies_should_contain('foo', 'bar')
-
+      get_me_the_cookies.first.should_include(:name => "foo", :value => "bar", :expires => nil)
       visit '/set/myopic/mice'
-      page.should have_content("Setting myopic=mice")
-      cookies_should_contain('myopic','mice')
+      get_me_the_cookies.length.should be(2)
+    end
+  end
+
+  describe "show_me_the_cookies" do
+    it "returns a string representation of the get_me_the_cookies hash" do
+      visit '/set/foo/bar'
+      visit '/set/myopic/mice'
+      show_me_the_cookies.should == get_me_the_cookies
     end
   end
 
