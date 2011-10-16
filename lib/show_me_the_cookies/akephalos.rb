@@ -18,6 +18,14 @@ class ShowMeTheCookies::Akephalos
     @browser.cookies.delete(cookie) if cookie
   end
 
+  def expire_cookies
+    cookies.each do |c|
+      # it drops expired cookies for us, so just remove session cookies
+      # we don't care that it's a badly decoded java date object, just that it's present
+      delete_cookie(c.name)  if c.expires == nil
+    end
+  end
+
 private
   def get_me_the_raw_cookie(cookie_name)
     @browser.cookies[cookie_name.to_s]
