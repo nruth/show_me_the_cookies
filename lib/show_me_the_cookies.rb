@@ -3,7 +3,7 @@ module ShowMeTheCookies
   require 'show_me_the_cookies/selenium'
   require 'show_me_the_cookies/akephalos'
 
-  # return a string summary of the cookie
+  # puts a string summary of the cookie
   def show_me_the_cookie(cookie_name)
     puts "#{cookie_name}: #{get_me_the_cookie(cookie_name).inspect}"
   end
@@ -14,7 +14,7 @@ module ShowMeTheCookies
     current_driver_adapter.get_me_the_cookie(cookie_name)
   end
 
-  # return a string summary of all cookies
+  # puts a string summary of all cookies
   def show_me_the_cookies
     puts "Cookies: #{get_me_the_cookies.inspect}"
   end
