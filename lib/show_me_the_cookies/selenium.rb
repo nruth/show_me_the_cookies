@@ -4,12 +4,12 @@ class ShowMeTheCookies::Selenium
     self
   end
 
-  def show_me_the_cookie(cookie_name)
-    @browser.manage.cookie_named(cookie_name)[:value]
+  def get_me_the_cookie(cookie_name)
+    @browser.manage.cookie_named(cookie_name)
   end
 
-  def show_me_the_cookies
-    @browser.manage.all_cookies.map(&:inspect).join("\n")
+  def get_me_the_cookies
+    @browser.manage.all_cookies
   end
 
   def expire_cookies

@@ -2,17 +2,22 @@ module ShowMeTheCookies
   require 'show_me_the_cookies/rack_test'
   require 'show_me_the_cookies/selenium'
 
-  # return a string summary of all cookies
-  def inspect_cookies
-    current_driver_adapter.show_me_the_cookies
-  end
-
+  # return a string summary of the cookie
   def show_me_the_cookie(cookie_name)
-    current_driver_adapter.show_me_the_cookie(cookie_name)
+    puts "#{cookie_name}: #{get_me_the_cookie(cookie_name).inspect}"
+  end
+  
+  def get_me_the_cookie(cookie_name)
+    current_driver_adapter.get_me_the_cookie(cookie_name)
   end
 
+  # return a string summary of all cookies
   def show_me_the_cookies
-    puts "Current cookies: #{inspect_cookies}"
+    puts "Cookies: #{get_me_the_cookies.inspect}"
+  end
+  
+  def get_me_the_cookies
+    current_driver_adapter.get_me_the_cookies
   end
 
   # deletes the named cookie
