@@ -5,28 +5,26 @@ class ShowMeTheCookies::Akephalos
   end
 
   def get_me_the_cookie(cookie_name)
-    cookie = @browser.cookies[cookie_name.to_s]
+    cookie = get_me_the_raw_cookie(cookie_name)
     cookie && _translate_cookie(cookie)
   end
 
   def get_me_the_cookies
-    # Akephalos 2's browser.cookies.each doesn't appear to work well, so
-    # we use Javascript to get the document.cookie string, which is a poort
-    # substitute (cf. HTTP only cookies), but it's better than nothing.
-    #
-    cookie_names.map { |name| get_me_the_cookie(name) }
+    cookies.map {|c| _translate_cookie(c) }
   end
 
   def delete_cookie(cookie_name)
-    cookie = show_me_the_cookie(cookie_name)
+    cookie = get_me_the_raw_cookie(cookie_name)
     @browser.cookies.delete(cookie) if cookie
   end
 
 private
-  def cookie_names
-    document_cookie = @driver.evaluate_script("document.cookie")
-    pairs = document_cookie && document_cookie.split(/ *; */)
-    pairs.map { |pair| pair.split(/\=/)[0].strip }
+  def get_me_the_raw_cookie(cookie_name)
+    @browser.cookies[cookie_name.to_s]
+  end
+
+  def cookies
+    @browser.cookies.to_a
   end
 
   def _translate_cookie(cookie)
@@ -34,7 +32,8 @@ private
         :domain => cookie.domain,
         :value => cookie.value, 
         :expires => cookie.expires,
-        :path => cookie.path}
+        :path => cookie.path
+    }
     # Akephalos2 returns a java.util.Date or somesuch that looks like this, so we
     # remove it if necessary
     #
