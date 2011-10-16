@@ -2,13 +2,15 @@ shared_examples "the API" do
   def cookies_should_contain(key, value)
     key_present = get_me_the_cookies.any? {|c| c[:name] == key}
     value_present = get_me_the_cookies.any? {|c| c[:value] == value}
-    (key_present and value_present).should be_true
+    msg = "Cookie not found: #{key}=#{value} in #{get_me_the_cookies.inspect}"
+    (key_present and value_present).should be_true, msg
   end
 
   def cookies_should_not_contain(key, value)
     key_present = get_me_the_cookies.any? {|c| c[:name] == key}
     value_present = get_me_the_cookies.any? {|c| c[:value] == value}
-    (key_present and value_present).should be_false
+    msg = "Unwanted cookie found: #{key}=#{value} in #{get_me_the_cookies.inspect}"
+    (key_present and value_present).should be_false, msg
   end
 
   describe "for getting cookie hashes" do
