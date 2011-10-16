@@ -11,9 +11,9 @@ class ShowMeTheCookies::RackTest
     cookies.map {|c| _translate_cookie(c) }
   end
 
-  # See http://j-ferguson.com/testing/bdd/hacking-capybara-cookies/
   def expire_cookies
     cookies.reject! do |existing_cookie|
+      # See http://j-ferguson.com/testing/bdd/hacking-capybara-cookies/
       # catch session cookies/no expiry (nil) and past expiry (true)
       existing_cookie.expired? != false
     end    
