@@ -1,6 +1,6 @@
 # Show me the cookies
 
-Some helpers for poking around at your browser's cookies in integration tests.
+Some helpers for poking around at your Capybara driven browser's cookies in integration tests.
 
 ## API
 
