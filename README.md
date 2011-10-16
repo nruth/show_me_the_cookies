@@ -2,6 +2,9 @@
 
 Some helpers for poking around at your Capybara driven browser's cookies in integration tests.
 
+Supports Capybara's bundled drivers (rack-test, Selenium Webdriver), and adapters for other
+drivers may be added (at time of writing Akephalos is also available).
+
 ## API
 
       # puts a string summary of the cookie
@@ -58,25 +61,12 @@ in step_helper or your support directory:
 
 In a request spec, using [Capybara](https://github.com/jnicklas/capybara)
 
-    it "remember-me is on by default" do
-      member = Member.make
-      visit dashboard_path
-      page.should have_content "Login"
-      within '#member_login' do
-        fill_in "Email", :with => member.email
-        fill_in "Password", :with => member.password
-        click_on "Sign in"
-      end
-  
-      page.should have_content("Dashboard")
-      page.should have_no_content("Login")
-      #     Given I close my browser (clearing the session)
+    specify "user login is remembered across browser restarts" do
+      log_in_as_user
+      should_be_logged_in
+      #browser restart = session cookie is lost
       expire_cookies
-
-      #     When I come back next time
-      visit dashboard_path
-      page.should have_content("Dashboard")
-      page.should have_no_content("Login")
+      should_be_logged_in
     end
 
 
@@ -122,19 +112,14 @@ Install by loading the gem and adding the following to your stepdefs or support 
       expire_cookies
     end
 
-## Addendum
-
-At time of writing, Rails session cookies looked something like '\_appname\_session', 
-and can be found with browser resource tracker (e.g. firebug) or using Rails 3's 
-Rails.application.config.session_options[:key]
-
 ## History, Credits, and Acknowledgements
 
-Original development took place when testing Devise 0.1's "Remember me" functionality under rails 2.3.x with capybara rack-test and/or selenium.
+[Contributors](https://github.com/nruth/show_me_the_cookies/contributors)
 
+Original development took place when testing Devise 0.1's "Remember me" functionality under rails 2.3.x with capybara rack-test and/or selenium.
 Initial release as a gist [here](https://gist.github.com/484787), early development sponsored by [Medify](http://www.medify.co.uk).
 
 Contributions outside of github have been made by:
 
-  * [Leandro Pedroni](https://github.com/ilpoldo) -- Rails 3 session cookie detection (no longer in the code but present in readme)
-  * [Matthew Nielsen](https://github.com/xunker) -- added culerity support & encouraged gem release
+  * [Leandro Pedroni](https://github.com/ilpoldo)
+  * [Matthew Nielsen](https://github.com/xunker)
