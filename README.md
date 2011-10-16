@@ -4,14 +4,42 @@ Some helpers for poking around at your browser's cookies in integration tests.
 
 ## API
 
-    inspect_cookies # Returns a string summarising your current session cookie's k/v pairs,
-                    # so you can see what's going on.
+      # puts a string summary of the cookie
+      show_me_the_cookie(cookie_name)
+      
+      # returns a hash of the cookie
+      # form: {:name, :domain, :value, :expires, :path}
+      get_me_the_cookie(cookie_name)
+      
+      # puts a string summary of all cookies
+      show_me_the_cookies
+      
+      # returns an array of cookie hashes
+      # form: [{:name, :domain, :value, :expires, :path}]
+      get_me_the_cookies
+      
+      # deletes the named cookie
+      delete_cookie(cookie_name)
+      
+      # removes session cookies and expired persistent cookies
+      expire_cookies
 
-    show_me_the_cookie(key) # return the cookie's value
+## Contributing
 
-    delete_cookie "key" # Deletes a particular k/v pair from your session cookie.
+If you find this useful, the best way to say thanks is to take a poke around the code and send feedback upstream.
 
-    expire_cookies # Removes cookies which are either due to expire, or have no expiry set.
+Bugs / requests should go in [Github issues](https://github.com/nruth/show_me_the_cookies/issues).
+
+Code contributions should be sent by github pull request, or contact [me](https://github.com/nruth) with a link 
+to your repository branch.
+
+Patches should be small isolated changes, and testable, or preferably tested.
+
+More tests are welcome.
+
+New drivers should be accompanied by a passing API spec. 
+Driver-specific edge cases should not be added to the shared spec unless thought to be of general interest.
+API spec should not be changed because something doesn't work, fix the driver or make a plugin gem.
 
 ## Installation
 
@@ -95,12 +123,6 @@ Install by loading the gem and adding the following to your stepdefs or support 
     Given /^I close my browser \(clearing the session\)$/ do
       expire_cookies
     end
-
-## Contributing
-
-Use github issues for discussion. Contributions via small, testable (preferably tested), pull requests.
-
-Code-style comments, refactoring, tests and new features welcome (roughly in that order :).
 
 ## Addendum
 
