@@ -7,6 +7,8 @@ module ShowMeTheCookies
     puts "#{cookie_name}: #{get_me_the_cookie(cookie_name).inspect}"
   end
   
+  # returns a hash of the cookie
+  # form: {:name, :domain, :value, :expires, :path}
   def get_me_the_cookie(cookie_name)
     current_driver_adapter.get_me_the_cookie(cookie_name)
   end
@@ -16,6 +18,8 @@ module ShowMeTheCookies
     puts "Cookies: #{get_me_the_cookies.inspect}"
   end
   
+  # returns an array of cookie hashes
+  # form: [{:name, :domain, :value, :expires, :path}]
   def get_me_the_cookies
     current_driver_adapter.get_me_the_cookies
   end
