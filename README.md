@@ -27,19 +27,17 @@ Some helpers for poking around at your Capybara driven browser's cookies in inte
 ## Contributing
 
 If you find this useful, the best way to say thanks is to take a poke around the code and send feedback upstream.
-
-Bugs / requests should go in [Github issues](https://github.com/nruth/show_me_the_cookies/issues).
+Bugs / requests / suggestions should be raised in the [Github issues](https://github.com/nruth/show_me_the_cookies/issues) tracker.
 
 Code contributions should be sent by github pull request, or contact [me](https://github.com/nruth) with a link 
 to your repository branch.
-
-Patches should be small isolated changes, and testable, or preferably tested.
-
-More tests are welcome.
+Patches should be small, isolated, testable, and preferably tested.
 
 New drivers should be accompanied by a passing API spec. 
 Driver-specific edge cases should not be added to the shared spec unless thought to be of general interest.
 API spec should not be changed because something doesn't work, fix the driver or make a plugin gem.
+
+More tests are welcome.
 
 ## Installation
 
