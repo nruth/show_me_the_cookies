@@ -12,9 +12,11 @@ shared_examples "the API" do
   end
 
   describe "show_me_the_cookie" do
-    it "returns the cookie value" do
+    it "returns the cookie hash" do
       visit '/set/foo/bar'
-      show_me_the_cookie('foo').should == "bar"
+      show_me_the_cookie('foo')[:name].should == "foo"
+      show_me_the_cookie('foo')[:value].should == "bar"
+      show_me_the_cookie('foo')[:expires].should == nil
     end
   end
 
