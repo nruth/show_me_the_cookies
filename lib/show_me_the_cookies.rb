@@ -1,6 +1,7 @@
 module ShowMeTheCookies
   require 'show_me_the_cookies/rack_test'
   require 'show_me_the_cookies/selenium'
+  require 'show_me_the_cookies/akephalos'
 
   # return a string summary of the cookie
   def show_me_the_cookie(cookie_name)
@@ -38,7 +39,8 @@ private
   def adapters
     @@drivers ||= {
       :selenium   => ShowMeTheCookies::Selenium,
-      :rack_test  => ShowMeTheCookies::RackTest
+      :rack_test  => ShowMeTheCookies::RackTest,
+      :akephalos  => ShowMeTheCookies::Akephalos
     }
   end
 
