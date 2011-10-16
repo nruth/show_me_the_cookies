@@ -6,9 +6,11 @@ Some helpers for poking around at your browser's cookies in integration tests.
 
     inspect_cookies # Returns a string summarising your current session cookie's k/v pairs,
                     # so you can see what's going on.
-    
+
+    show_me_the_cookie(key) # return the cookie's value
+
     delete_cookie "key" # Deletes a particular k/v pair from your session cookie.
-    
+
     expire_cookies # Removes cookies which are either due to expire, or have no expiry set.
 
 ## Installation

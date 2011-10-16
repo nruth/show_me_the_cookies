@@ -11,6 +11,13 @@ shared_examples "the API" do
     (key_present and value_present).should be_false
   end
 
+  describe "show_me_the_cookie" do
+    it "returns the cookie value" do
+      visit '/set/foo/bar'
+      show_me_the_cookie('foo').should == "bar"
+    end
+  end
+
   describe "inspect_cookies" do
     it "returns a driver-dependent string summary of the session cookie's k/v pairs" do
       visit '/set/foo/bar'
