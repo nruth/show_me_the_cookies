@@ -45,7 +45,19 @@ private
   end
 
   def current_driver_adapter
-    adapter = adapters[Capybara.current_driver] || raise("Unsupported driver #{driver}, use one of #{drivers.keys}")
+    adapter = adapters[Capybara.current_driver]
+    if adapter.nil?
+      if driver_uses_selenium?
+        adapter = adapters[:selenium]
+      else
+        raise("Unsupported driver #{Capybara.current_driver}, use one of #{Capybara.drivers.keys}")
+      end
+    end
     adapter.new(Capybara.current_session.driver)
+  end
+
+  def driver_uses_selenium?
+    driver = Capybara.drivers[Capybara.current_driver].call(nil)
+    driver.is_a?(Capybara::Selenium::Driver)
   end
 end
