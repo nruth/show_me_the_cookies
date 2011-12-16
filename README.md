@@ -38,7 +38,7 @@ Patches should be small, isolated, testable, and preferably tested.
 
 New drivers should be accompanied by a passing API spec. 
 Driver-specific edge cases should not be added to the shared spec unless thought to be of general interest.
-API spec should not be changed because something doesn't work, fix the driver or make a plugin gem.
+API spec should not be changed because something doesn't work – try to fix the driver, or make an addon gem.
 
 More tests are welcome.
 
