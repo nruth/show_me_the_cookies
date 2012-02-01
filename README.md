@@ -105,7 +105,11 @@ Install by loading the gem and adding the following to your stepdefs or support 
 ### Stepdefs
 
     Then /^show me the cookies!$/ do
-      puts show_me_the_cookies
+      show_me_the_cookies
+    end
+
+    Then /^show me the "([^"]*)" cookie$/ do |cookie_name|
+      show_me_the_cookie(cookie_name)
     end
 
     Given /^I close my browser \(clearing the session\)$/ do
