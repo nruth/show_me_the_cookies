@@ -9,21 +9,21 @@ drivers may be added (at time of writing Akephalos is also available).
 
       # puts a string summary of the cookie
       show_me_the_cookie(cookie_name)
-      
+
       # returns a hash of the cookie
       # form: {:name, :domain, :value, :expires, :path}
       get_me_the_cookie(cookie_name)
-      
+
       # puts a string summary of all cookies
       show_me_the_cookies
-      
+
       # returns an array of cookie hashes
       # form: [{:name, :domain, :value, :expires, :path}]
       get_me_the_cookies
-      
+
       # deletes the named cookie
       delete_cookie(cookie_name)
-      
+
       # removes session cookies and expired persistent cookies
       expire_cookies
 
@@ -32,11 +32,11 @@ drivers may be added (at time of writing Akephalos is also available).
 If you find this useful, the best way to say thanks is to take a poke around the code and send feedback upstream.
 Bugs / requests / suggestions should be raised in the [Github issues](https://github.com/nruth/show_me_the_cookies/issues) tracker.
 
-Code contributions should be sent by github pull request, or contact [me](https://github.com/nruth) with a link 
+Code contributions should be sent by github pull request, or contact [me](https://github.com/nruth) with a link
 to your repository branch.
 Patches should be small, isolated, testable, and preferably tested.
 
-New drivers should be accompanied by a passing API spec. 
+New drivers should be accompanied by a passing API spec.
 Driver-specific edge cases should not be added to the shared spec unless thought to be of general interest.
 API spec should not be changed because something doesn't work – try to fix the driver, or make an addon gem.
 
@@ -85,7 +85,7 @@ Install by loading the gem and adding the following to your stepdefs or support 
       When I go to the dashboard
       And I log in with the Remember Me option checked
       Then I should see "Welcome back"
-      
+
       When I close my browser (clearing the session)
       And I return to the dashboard url
       Then I should see "Welcome back"
@@ -96,7 +96,7 @@ Install by loading the gem and adding the following to your stepdefs or support 
       When I go to the dashboard
       And I log in without the Remember Me option checked
       Then I should see "Welcome back"
-    
+
       When I close my browser (clearing the session)
       And I return to the dashboard url
       Then I should see the log-in screen
@@ -105,7 +105,11 @@ Install by loading the gem and adding the following to your stepdefs or support 
 ### Stepdefs
 
     Then /^show me the cookies!$/ do
-      puts inspect_cookies
+      show_me_the_cookies
+    end
+
+    Then /^show me the "([^"]*)" cookie$/ do |cookie_name|
+      show_me_the_cookie(cookie_name)
     end
 
     Given /^I close my browser \(clearing the session\)$/ do
