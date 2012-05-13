@@ -59,9 +59,15 @@ shared_examples "the API" do
         cookies_should_contain('extras', 'hazlenut')
         cookies_should_contain('choc', 'milk')
 
-        visit '/delete/choc'
-        page.should have_content("Deleting choc")
+        delete_cookie('choc')
         cookies_should_contain('extras', 'hazlenut')
+        cookies_should_not_contain('choc', 'milk')
+      end
+
+      it "accepts symbols" do
+        visit '/set/choc/milk'
+        cookies_should_contain('choc', 'milk')
+        delete_cookie(:choc)
         cookies_should_not_contain('choc', 'milk')
       end
     end
