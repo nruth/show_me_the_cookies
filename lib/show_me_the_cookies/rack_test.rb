@@ -21,7 +21,7 @@ class ShowMeTheCookies::RackTest
 
   def delete_cookie(cookie_name)
     cookies.reject! do |existing_cookie|
-      existing_cookie.name.downcase == cookie_name
+      existing_cookie.name.downcase == cookie_name.to_s
     end
   end
 
