@@ -46,7 +46,7 @@ More tests are welcome.
 
 Add to your gemfile's test group:
 
-gem "show\_me\_the\_cookies"
+    gem "show_me_the_cookies"
 
 
 ## RSpec

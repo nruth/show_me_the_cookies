@@ -21,6 +21,10 @@ shared_examples "the API" do
       end
     end
 
+    it "returns nil for cookies that do not exist" do
+      get_me_the_cookie('some_unset_cookie').should be_nil
+    end
+
     describe "get_me_the_cookies" do
       it "returns an array of standardised cookie hashes" do
         visit '/set/foo/bar'
