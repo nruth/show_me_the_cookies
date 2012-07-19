@@ -16,7 +16,7 @@ class ShowMeTheCookies::RackTest
       # See http://j-ferguson.com/testing/bdd/hacking-capybara-cookies/
       # catch session cookies/no expiry (nil) and past expiry (true)
       existing_cookie.expired? != false
-    end    
+    end
   end
 
   def delete_cookie(cookie_name)
@@ -35,9 +35,9 @@ private
   end
 
   def _translate_cookie(cookie)
-    {:name => cookie.name, 
+    {:name => cookie.name,
     :domain => cookie.domain,
-    :value => cookie.value, 
+    :value => cookie.value,
     :expires => cookie.expires,
     :path => cookie.path}
   end
