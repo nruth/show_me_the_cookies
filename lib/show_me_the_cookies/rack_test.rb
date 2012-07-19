@@ -4,7 +4,8 @@ class ShowMeTheCookies::RackTest
   end
 
   def get_me_the_cookie(cookie_name)
-    _translate_cookie cookies.select {|c| c.name == cookie_name}.first
+    found = cookies.select {|c| c.name == cookie_name}
+    found.empty? ? nil : _translate_cookie(found.first)
   end
 
   def get_me_the_cookies
