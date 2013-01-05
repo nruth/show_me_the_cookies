@@ -54,7 +54,7 @@ Add to your gemfile's test group:
 in step_helper or your support directory:
 
     RSpec.configure do |config|
-      config.include ShowMeTheCookies, :type => :request
+      config.include ShowMeTheCookies, :type => :feature
     end
 
 ### Example usage

@@ -1,10 +1,9 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
-require 'akephalos'
 
-describe "Akephalos (HTMLUnit)", :type => :request do
+describe "Selenium Webdriver", :type => :feature do
   before(:each) do
-    Capybara.current_driver = :akephalos
+    Capybara.current_driver = :selenium
   end
 
   describe "the testing rig" do

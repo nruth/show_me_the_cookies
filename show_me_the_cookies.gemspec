@@ -17,9 +17,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
-  s.add_dependency('capybara', '~> 1.0')
+  s.add_dependency('capybara', '~> 2.0')
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'sinatra'
-  s.add_development_dependency 'akephalos2'
-  s.add_development_dependency 'poltergeist'
 end
