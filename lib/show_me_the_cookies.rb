@@ -2,6 +2,7 @@ module ShowMeTheCookies
   require 'show_me_the_cookies/rack_test'
   require 'show_me_the_cookies/selenium'
   require 'show_me_the_cookies/akephalos'
+  require 'show_me_the_cookies/poltergeist'
 
   # puts a string summary of the cookie
   def show_me_the_cookie(cookie_name)
@@ -38,9 +39,10 @@ module ShowMeTheCookies
 private
   def adapters
     @@drivers ||= {
-      :selenium   => ShowMeTheCookies::Selenium,
-      :rack_test  => ShowMeTheCookies::RackTest,
-      :akephalos  => ShowMeTheCookies::Akephalos
+      :selenium     => ShowMeTheCookies::Selenium,
+      :rack_test    => ShowMeTheCookies::RackTest,
+      :akephalos    => ShowMeTheCookies::Akephalos,
+      :poltergeist  => ShowMeTheCookies::Poltergeist
     }
   end
 
