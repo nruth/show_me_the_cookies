@@ -1,5 +1,6 @@
 module ShowMeTheCookies
   require 'show_me_the_cookies/adapters/rack_test'
+  require 'show_me_the_cookies/adapters/poltergeist'
   require 'show_me_the_cookies/adapters/selenium'
 
   @adapters = {}
@@ -17,6 +18,7 @@ module ShowMeTheCookies
   # to register your own adapter/driver do this in your test setup code somewhere e.g. spec/support
   register_adapter(:selenium, ShowMeTheCookies::Selenium)
   register_adapter(:rack_test, ShowMeTheCookies::RackTest)
+  register_adapter(:rack_test, ShowMeTheCookies::Poltergeist)
 
   # puts a string summary of the cookie
   def show_me_the_cookie(cookie_name)
