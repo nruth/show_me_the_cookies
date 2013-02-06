@@ -27,17 +27,6 @@ You may add new drivers for your application by implementing an adapter class an
       # removes session cookies and expired persistent cookies
       expire_cookies
 
-## Contributing
-
-If you find this useful some ways to say thanks are reviewing the code and/or kind words or other feedback by Github message.
-Bugs should be raised in the [issue tracker](https://github.com/nruth/show_me_the_cookies/issues).
-
-Code contributions should be sent as Github pull requests, or by messaging [me](https://github.com/nruth) with a link
-to your repository branch. Please run the tests, and add new ones.
-
-New drivers are unlikely to be accepted at this stage. You can instead add them to your application's test setup. 
-If you come up with an interesting new driver/adapter mail me with a link to a repository or gist and I'll link to it here.
-Hopefully the API shared-spec will come in useful when working on your own driver.
 
 ## Installation
 
@@ -112,6 +101,20 @@ Install by loading the gem and adding the following to your stepdefs or support 
     Given /^I close my browser \(clearing the session\)$/ do
       expire_cookies
     end
+
+
+## Contributing
+
+If you find this useful some ways to say thanks are reviewing the code and/or kind words or other feedback by Github message.
+Bugs should be raised in the [issue tracker](https://github.com/nruth/show_me_the_cookies/issues).
+
+Code contributions should be sent as Github pull requests, or by messaging [me](https://github.com/nruth) with a link
+to your repository branch. Please run the tests, and add new ones.
+
+New drivers are unlikely to be accepted at this stage. You can instead add them to your application's test setup. 
+If you come up with an interesting new driver/adapter mail me with a link to a repository or gist and I'll link to it here.
+Hopefully the API shared-spec will come in useful when working on your own driver.
+
 
 ## History, Credits, and Acknowledgements
 
