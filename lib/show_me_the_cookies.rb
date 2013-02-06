@@ -1,6 +1,22 @@
 module ShowMeTheCookies
-  require 'show_me_the_cookies/rack_test'
-  require 'show_me_the_cookies/selenium'
+  require 'show_me_the_cookies/adapters/rack_test'
+  require 'show_me_the_cookies/adapters/selenium'
+
+  @adapters = {}
+  class << self
+    attr_reader :adapters
+    
+    # Register your own capybara-driver cookie adapter. 
+    # Use the same name as the one Capybara does to identify that driver.
+    # Implement the interface of spec/shared_examples_for_api, as seen in lib/show_me_the_cookies/drivers
+    def register_adapter(driver, adapter)
+      adapters[driver] = adapter
+    end
+  end
+
+  # to register your own adapter/driver do this in your test setup code somewhere e.g. spec/support
+  register_adapter(:selenium, ShowMeTheCookies::Selenium)
+  register_adapter(:rack_test, ShowMeTheCookies::RackTest)
 
   # puts a string summary of the cookie
   def show_me_the_cookie(cookie_name)
@@ -35,17 +51,10 @@ module ShowMeTheCookies
   end
 
 private
-  def adapters
-    @@drivers ||= {
-      :selenium     => ShowMeTheCookies::Selenium,
-      :rack_test    => ShowMeTheCookies::RackTest
-    }
-  end
-
   def current_driver_adapter
-    adapter = adapters[Capybara.current_driver]
+    adapter = ShowMeTheCookies.adapters[Capybara.current_driver]
     if adapter.nil?
-      if driver_uses_selenium?
+      if driver_uses_selenium? # to support custom selenium drivers / configs (whatever they are?)
         adapter = adapters[:selenium]
       else
         raise("Unsupported driver #{Capybara.current_driver}, use one of #{adapters.keys}")
