@@ -2,8 +2,8 @@
 
 Some helpers for poking around at your Capybara driven browser's cookies in integration tests.
 
-Supports Capybara's bundled drivers (rack-test, Selenium Webdriver), and adapters for other
-drivers may be added (at time of writing Akephalos is also available).
+Supports Capybara's bundled drivers (rack-test, Selenium Webdriver) and Poltergeist (PhantomJS).
+You may add new drivers for your application by implementing an adapter class and calling ShowMeTheCookies.register_adapter in your test code (e.g. a spec/support file).
 
 ## API
 
@@ -29,18 +29,15 @@ drivers may be added (at time of writing Akephalos is also available).
 
 ## Contributing
 
-If you find this useful, the best way to say thanks is to take a poke around the code and send feedback upstream.
-Bugs / requests / suggestions should be raised in the [Github issues](https://github.com/nruth/show_me_the_cookies/issues) tracker.
+If you find this useful some ways to say thanks are reviewing the code and/or kind words or other feedback by Github message.
+Bugs should be raised in the [issue tracker](https://github.com/nruth/show_me_the_cookies/issues).
 
-Code contributions should be sent by github pull request, or contact [me](https://github.com/nruth) with a link
-to your repository branch.
-Patches should be small, isolated, testable, and preferably tested.
+Code contributions should be sent as Github pull requests, or by messaging [me](https://github.com/nruth) with a link
+to your repository branch. Please run the tests, and add new ones.
 
-New drivers should be accompanied by a passing API spec.
-Driver-specific edge cases should not be added to the shared spec unless thought to be of general interest.
-API spec should not be changed because something doesn't work – try to fix the driver, or make an addon gem.
-
-More tests are welcome.
+New drivers are unlikely to be accepted at this stage. You can instead add them to your application's test setup. 
+If you come up with an interesting new driver/adapter mail me with a link to a repository or gist and I'll link to it here.
+Hopefully the API shared-spec will come in useful when working on your own driver.
 
 ## Installation
 
