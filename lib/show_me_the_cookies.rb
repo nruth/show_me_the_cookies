@@ -57,9 +57,9 @@ private
     adapter = ShowMeTheCookies.adapters[Capybara.current_driver]
     if adapter.nil?
       if driver_uses_selenium? # to support custom selenium drivers / configs (whatever they are?)
-        adapter = adapters[:selenium]
+        adapter = ShowMeTheCookies.adapters[:selenium]
       else
-        raise("Unsupported driver #{Capybara.current_driver}, use one of #{adapters.keys}")
+        raise("Unsupported driver #{Capybara.current_driver}, use one of #{ShowMeTheCookies.adapters.keys}")
       end
     end
     adapter.new(Capybara.current_session.driver)
