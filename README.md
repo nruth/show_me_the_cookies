@@ -103,6 +103,18 @@ Install by loading the gem and adding the following to your stepdefs or support 
     end
 
 
+### Installing your own drivers
+
+Register your adapter class in your test setup after loading the library.
+
+    ShowMeTheCookies.register_adapter(driver, adapter)
+
+for example
+
+    ShowMeTheCookies.register_adapter(:custom_selenium_a, ShowMeTheCookies::Selenium)
+
+which indicates how to use the selenium adapter with a custom selenium testing profile.
+
 ## Contributing
 
 If you find this useful some ways to say thanks are reviewing the code and/or kind words or other feedback by Github message.
