@@ -56,17 +56,10 @@ private
   def current_driver_adapter
     adapter = ShowMeTheCookies.adapters[Capybara.current_driver]
     if adapter.nil?
-      if driver_uses_selenium? # to support custom selenium drivers / configs (whatever they are?)
-        adapter = ShowMeTheCookies.adapters[:selenium]
-      else
-        raise("Unsupported driver #{Capybara.current_driver}, use one of #{ShowMeTheCookies.adapters.keys}")
-      end
+      raise(ShowMeTheCookies::UnknownDriverError, "Unsupported driver #{Capybara.current_driver}, use one of #{ShowMeTheCookies.adapters.keys} or register your new driver with ShowMeTheCookies.register_adapter")
     end
     adapter.new(Capybara.current_session.driver)
   end
 
-  def driver_uses_selenium?
-    driver = Capybara.drivers[Capybara.current_driver].call(nil)
-    driver.is_a?(Capybara::Selenium::Driver)
-  end
+  class ShowMeTheCookies::UnknownDriverError < RuntimeError; end
 end
