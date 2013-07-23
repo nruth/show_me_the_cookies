@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec' # for testing
   s.add_development_dependency 'sinatra' # for testing
   s.add_development_dependency 'poltergeist' # for testing
+  s.add_development_dependency 'selenium-webdriver' # removed from capy2 deps
 end
