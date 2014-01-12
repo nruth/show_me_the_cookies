@@ -9,6 +9,10 @@ get '/set/:key/:value' do
   "Setting #{params[:key]}=#{params[:value]}"
 end
 
+get '/get/:key' do
+  "Got cookie #{params[:key]}=#{request.cookies[params[:key]]}"
+end
+
 get '/delete/:key' do
   response.delete_cookie params[:key], :path => '/'
   "Deleting #{params[:key]}"

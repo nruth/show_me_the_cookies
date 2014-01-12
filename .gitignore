@@ -10,3 +10,5 @@ bin/
 .rspec
 .rbenv-version
 .akephalos/
+.idea
+.ruby-version

@@ -26,6 +26,10 @@ class ShowMeTheCookies::RackTest
     end
   end
 
+	def create_cookie(name, value)
+    cookie_jar[name] = value
+	end
+
 private
   def cookie_jar
     @rack_test_driver.browser.current_session.instance_variable_get(:@rack_mock_session).cookie_jar

@@ -1,6 +1,7 @@
 class ShowMeTheCookies::Poltergeist
   def initialize(driver)
     @browser = driver.browser
+		@driver = driver
   end
 
   def get_me_the_cookie(name)
@@ -20,6 +21,10 @@ class ShowMeTheCookies::Poltergeist
 
   def delete_cookie(name)
     @browser.remove_cookie(name.to_s)
+  end
+
+	def create_cookie(name, value)
+		@driver.set_cookie(name, value)
   end
 
   private

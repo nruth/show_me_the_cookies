@@ -76,6 +76,25 @@ shared_examples "the API" do
       end
     end
 
+		describe "create_cookie(cookie_name, cookie_value)" do
+			it "creates a cookie" do
+			  # need to first hit a page to set a cookie (selenium)
+			  visit('/')
+				create_cookie('choc', 'milk')
+        visit '/get/choc' 
+				cookies_should_contain('choc', 'milk')
+				page.should have_content("Got cookie choc=milk")
+      end
+
+      it "accepts symbols" do
+			  visit('/')
+				create_cookie(:choc, :milk)
+        visit '/get/choc'
+				cookies_should_contain('choc', 'milk')
+				page.should have_content("Got cookie choc=milk")
+			end
+		end
+
     describe "expire_cookies" do
       it "removes cookies without expiry times set" do
         visit '/set/choc/milk'

@@ -52,6 +52,10 @@ module ShowMeTheCookies
     current_driver_adapter.expire_cookies
   end
 
+	def create_cookie(name, value)
+		current_driver_adapter.create_cookie(name, value)
+  end
+
 private
   def current_driver_adapter
     adapter = ShowMeTheCookies.adapters[Capybara.current_driver]

@@ -21,4 +21,8 @@ class ShowMeTheCookies::Selenium
   def delete_cookie(cookie_name)
     @browser.manage.delete_cookie(cookie_name)
   end
+
+	def create_cookie(cookie_name, cookie_value)
+	  @browser.manage.add_cookie(name: cookie_name, value: cookie_value)
+	end
 end
