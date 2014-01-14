@@ -21,4 +21,24 @@ class ShowMeTheCookies::Selenium
   def delete_cookie(cookie_name)
     @browser.manage.delete_cookie(cookie_name)
   end
+
+	def create_cookie(cookie_name, cookie_value)
+    unless is_on_the_page?
+      warn "\n"
+      warn "*******************************************"
+      warn "** Can not set a cookie on about:blank   **"
+      warn "** Please visit a url in your app first! **"
+      warn "*******************************************"
+      warn "\n"
+    end
+	  @browser.manage.add_cookie(name: cookie_name, value: cookie_value)
+  end
+
+  :private
+
+  def is_on_the_page?
+    current_url = @browser.current_url
+    current_url && current_url != "" && current_url != "about:blank"
+  end
+
 end
