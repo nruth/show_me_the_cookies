@@ -24,12 +24,9 @@ class ShowMeTheCookies::Selenium
 
 	def create_cookie(cookie_name, cookie_value)
     unless is_on_the_page?
-      warn "\n"
-      warn "*******************************************"
-      warn "** Can not set a cookie on about:blank   **"
-      warn "** Please visit a url in your app first! **"
-      warn "*******************************************"
-      warn "\n"
+      raise ShowMeTheCookies::Selenium::SiteNotVisitedError.new(
+        "Can't set a cookie on about:blank. Visit a url in your app first."
+      )
     end
 	  @browser.manage.add_cookie(name: cookie_name, value: cookie_value)
   end
@@ -41,4 +38,7 @@ class ShowMeTheCookies::Selenium
     current_url && current_url != "" && current_url != "about:blank"
   end
 
+end
+
+class ShowMeTheCookies::Selenium::SiteNotVisitedError < StandardError 
 end

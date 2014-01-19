@@ -79,7 +79,7 @@ shared_examples "the API" do
 		describe "create_cookie(cookie_name, cookie_value)" do
 			it "creates a cookie" do
 			  # need to first hit a page to set a cookie (selenium)
-			  visit('/')
+        visit('/')
 				create_cookie('choc', 'milk')
         visit '/get/choc' 
 				cookies_should_contain('choc', 'milk')
