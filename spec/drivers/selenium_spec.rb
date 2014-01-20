@@ -16,8 +16,6 @@ describe "Selenium Webdriver", :type => :feature do
   it_behaves_like "the API"
 
   it "raises an exception when writing a cookie before visiting the app" do
-		lambda {create_cookie('choc', 'milk')}.should raise_error(
-      ShowMeTheCookies::Selenium::SiteNotVisitedError
-    )
+    expect {create_cookie('choc', 'milk')}.to raise_error(ShowMeTheCookies::Selenium::SiteNotVisitedError)
   end
 end

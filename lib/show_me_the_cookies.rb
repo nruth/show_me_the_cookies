@@ -7,7 +7,7 @@ module ShowMeTheCookies
   @adapters = {}
   class << self
     attr_reader :adapters
-    
+
     # Register your own capybara-driver cookie adapter. 
     # Use the same name as the one Capybara does to identify that driver.
     # Implement the interface of spec/shared_examples_for_api, as seen in lib/show_me_the_cookies/drivers
@@ -26,7 +26,7 @@ module ShowMeTheCookies
   def show_me_the_cookie(cookie_name)
     puts "#{cookie_name}: #{get_me_the_cookie(cookie_name).inspect}"
   end
-  
+
   # returns a hash of the cookie
   # form: {:name, :domain, :value, :expires, :path}
   def get_me_the_cookie(cookie_name)
@@ -37,7 +37,7 @@ module ShowMeTheCookies
   def show_me_the_cookies
     puts "Cookies: #{get_me_the_cookies.inspect}"
   end
-  
+
   # returns an array of cookie hashes
   # form: [{:name, :domain, :value, :expires, :path}]
   def get_me_the_cookies
@@ -54,11 +54,12 @@ module ShowMeTheCookies
     current_driver_adapter.expire_cookies
   end
 
-	def create_cookie(name, value)
-		current_driver_adapter.create_cookie(name, value)
+  def create_cookie(name, value)
+    current_driver_adapter.create_cookie(name, value)
   end
 
 private
+
   def current_driver_adapter
     adapter = ShowMeTheCookies.adapters[Capybara.current_driver]
     if adapter.nil?
