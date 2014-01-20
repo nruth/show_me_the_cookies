@@ -26,9 +26,9 @@ class ShowMeTheCookies::RackTest
     end
   end
 
-	def create_cookie(name, value)
+  def create_cookie(name, value)
     cookie_jar[name] = value
-	end
+  end
 
 private
   def cookie_jar

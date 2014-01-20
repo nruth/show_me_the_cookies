@@ -10,9 +10,7 @@ describe "RackTest when rack-test adapter uninstalled", :type => :feature do
 
   describe "error messages" do
     it "should tell me I'm unsupported" do
-      lambda do
-        get_me_the_cookies
-      end.should raise_error(ShowMeTheCookies::UnknownDriverError)
+      expect{get_me_the_cookies}.to raise_error(ShowMeTheCookies::UnknownDriverError)
     end
   end
 end
