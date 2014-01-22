@@ -22,13 +22,13 @@ class ShowMeTheCookies::Selenium
     @browser.manage.delete_cookie(cookie_name)
   end
 
-  def create_cookie(cookie_name, cookie_value)
+  def create_cookie(cookie_name, cookie_value, options)
     unless is_on_the_page?
       raise ShowMeTheCookies::Selenium::SiteNotVisitedError.new(
         "Can't set a cookie on about:blank. Visit a url in your app first."
       )
     end
-    @browser.manage.add_cookie(name: cookie_name, value: cookie_value)
+    @browser.manage.add_cookie({name: cookie_name, value: cookie_value}.merge(options))
   end
 
 private

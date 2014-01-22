@@ -52,8 +52,11 @@ module ShowMeTheCookies
     current_driver_adapter.expire_cookies
   end
 
-  def create_cookie(name, value)
-    current_driver_adapter.create_cookie(name, value)
+  # can take the following options:
+  # :path
+  # :domain
+  def create_cookie(name, value, options = {})
+    current_driver_adapter.create_cookie(name, value, options)
   end
 
 private

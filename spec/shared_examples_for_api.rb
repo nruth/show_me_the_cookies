@@ -79,20 +79,40 @@ shared_examples "the API" do
   end
 
   describe "create_cookie(cookie_name, cookie_value)" do
-    its "creates a cookie" do
+    it "creates a cookie" do
       # need to first hit a page to set a cookie (selenium)
-      visit('/')
-      create_cookie('choc', 'milk')
-      visit '/get/choc' 
-      cookies_should_contain('choc', 'milk')
+      visit("/")
+      create_cookie("choc", "milk")
+      visit "/get/choc"
+      cookies_should_contain("choc", "milk")
       page.should have_content("Got cookie choc=milk")
     end
 
+    # requires entry in /etc/hosts file:
+    # 127.0.0.1 localhost.local.com
+    it "creates a cookie with path and domain" do
+      # need to first hit a page to set a cookie (selenium)
+      visit("/")
+      create_cookie("choc", "milk", path: "/", domain: ".local.com")
+      cookies_should_contain("choc", "milk")
+
+      visit("/get/choc")
+      page.should have_content("Got cookie choc=milk")
+
+      visit '/set_with_domain/choc/doublemilk'
+      cookies_should_contain("choc", "doublemilk")
+      cookies_should_not_contain('choc', 'milk')
+
+      visit("/get/choc")
+      page.should have_content("Got cookie choc=doublemilk")
+    end
+
     it "accepts symbols" do
-      visit('/')
+      # need to first hit a page to set a cookie (selenium)
+      visit("/")
       create_cookie(:choc, :milk)
-      visit '/get/choc'
-      cookies_should_contain('choc', 'milk')
+      visit "/get/choc"
+      cookies_should_contain("choc", "milk")
       page.should have_content("Got cookie choc=milk")
     end
   end
