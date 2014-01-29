@@ -24,5 +24,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'poltergeist' # for testing
   s.add_development_dependency 'selenium-webdriver' # removed from capy2 deps
   s.add_development_dependency 'capybara-webkit' # for testing
-  s.add_development_dependency 'pry'
 end
