@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
 require 'capybara-webkit'
-require 'pry'
 
 describe "Webkit", :type => :feature do
   before(:each) do
