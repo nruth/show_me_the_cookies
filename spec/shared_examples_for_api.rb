@@ -76,50 +76,49 @@ shared_examples "the API" do
         cookies_should_not_contain('choc', 'milk')
       end
     end
+
+    describe "create_cookie(cookie_name, cookie_value)" do
+      it "creates a cookie" do
+        # need to first hit a page to set a cookie (selenium)
+        visit('/')
+        create_cookie('choc', 'milk')
+        visit '/get/choc' 
+        cookies_should_contain('choc', 'milk')
+        page.should have_content("Got cookie choc=milk")
+      end
+
+      it "accepts symbols" do
+        visit('/')
+        create_cookie(:choc, :milk)
+        visit '/get/choc'
+        cookies_should_contain('choc', 'milk')
+        page.should have_content("Got cookie choc=milk")
+      end
+    end
+
+    describe "expire_cookies" do
+      it "removes cookies without expiry times set" do
+        visit '/set/choc/milk'
+        visit '/set/extras/hazlenut'
+        visit '/set/myopic/mice'
+        cookies_should_contain('choc', 'milk')
+        cookies_should_contain('extras', 'hazlenut')
+        cookies_should_contain('myopic','mice')
+
+        expire_cookies
+        cookies_should_not_contain('choc', 'milk')
+        cookies_should_not_contain('extras', 'hazlenut')
+        cookies_should_not_contain('myopic','mice')
+      end
+
+      it "removes cookies which are past their expiry time, or the browser does" do
+        visit '/set_stale/rotting/fruit'
+        visit '/set_persistent/fresh/vegetables'
+
+        expire_cookies
+        cookies_should_not_contain('rotting','fruit')
+        cookies_should_contain('fresh','vegetables')
+      end
+    end
   end
-
-  describe "create_cookie(cookie_name, cookie_value)" do
-    its "creates a cookie" do
-      # need to first hit a page to set a cookie (selenium)
-      visit('/')
-      create_cookie('choc', 'milk')
-      visit '/get/choc' 
-      cookies_should_contain('choc', 'milk')
-      page.should have_content("Got cookie choc=milk")
-    end
-
-    it "accepts symbols" do
-      visit('/')
-      create_cookie(:choc, :milk)
-      visit '/get/choc'
-      cookies_should_contain('choc', 'milk')
-      page.should have_content("Got cookie choc=milk")
-    end
-  end
-
-  describe "expire_cookies" do
-    it "removes cookies without expiry times set" do
-      visit '/set/choc/milk'
-      visit '/set/extras/hazlenut'
-      visit '/set/myopic/mice'
-      cookies_should_contain('choc', 'milk')
-      cookies_should_contain('extras', 'hazlenut')
-      cookies_should_contain('myopic','mice')
-
-      expire_cookies
-      cookies_should_not_contain('choc', 'milk')
-      cookies_should_not_contain('extras', 'hazlenut')
-      cookies_should_not_contain('myopic','mice')
-    end
-
-    it "removes cookies which are past their expiry time, or the browser does" do
-      visit '/set_stale/rotting/fruit'
-      visit '/set_persistent/fresh/vegetables'
-
-      expire_cookies
-      cookies_should_not_contain('rotting','fruit')
-      cookies_should_contain('fresh','vegetables')
-    end
-  end
-
 end
