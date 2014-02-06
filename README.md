@@ -117,23 +117,19 @@ which indicates how to use the selenium adapter with a custom selenium testing p
 
 ## Contributing
 
-If you find this useful some ways to say thanks are reviewing the code and/or kind words or other feedback by Github message.
 Bugs should be raised in the [issue tracker](https://github.com/nruth/show_me_the_cookies/issues).
 
 Code contributions should be sent as Github pull requests, or by messaging [me](https://github.com/nruth) with a link
 to your repository branch. Please run the tests, and add new ones.
 
-New drivers are unlikely to be accepted at this stage. You can instead add them to your application's test setup. 
-If you come up with an interesting new driver/adapter mail me with a link to a repository or gist and I'll link to it here.
-Hopefully the API shared-spec will come in useful when working on your own driver.
-
+New drivers will be selectively accepted. Be sure that the api spec passes. If you prefer to keep the driver in your own repository send me the address and I'll add a link in the docs.
 
 ## History, Credits, and Acknowledgements
 
 [Contributors](https://github.com/nruth/show_me_the_cookies/contributors)
 
 Original development took place when testing Devise 0.1's "Remember me" functionality under rails 2.3.x with capybara rack-test and/or selenium.
-Initial release as a gist [here](https://gist.github.com/484787), early development sponsored by [Medify](http://www.medify.co.uk).
+Initial release as a gist [here](https://gist.github.com/484787). Development sponsored by [Medify](http://www.medify.co.uk).
 
 Contributions outside of github have been made by:
 
