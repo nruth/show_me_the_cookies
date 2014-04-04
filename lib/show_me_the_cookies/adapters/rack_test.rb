@@ -28,10 +28,8 @@ class ShowMeTheCookies::RackTest
 
   def create_cookie(name, value, options)
     cookie_raw = "#{name}=#{Rack::Utils.escape(value)}"
-    unless options.empty?
-      cookie_raw = "#{cookie_raw}; domain=#{options[:domain]}" if options.has_key?(:domain)
-      cookie_raw = "#{cookie_raw}; path=#{options[:path]}"     if options.has_key?(:path)
-    end
+    (cookie_raw = "#{cookie_raw}; domain=#{options[:domain]}") if options.has_key?(:domain)
+    (cookie_raw = "#{cookie_raw}; path=#{options[:path]}")     if options.has_key?(:path)
     cookie_jar.merge(cookie_raw)
   end
 

@@ -1,18 +1,5 @@
 shared_examples "the API" do
 
-  def cookies_should_contain(key, value)
-    key_present = get_me_the_cookies.any? {|c| c[:name] == key}
-    value_present = get_me_the_cookies.any? {|c| c[:value] == value}
-    msg = "Cookie not found: #{key}=#{value} in #{get_me_the_cookies.inspect}"
-    (key_present and value_present).should be_true, msg
-  end
-
-  def cookies_should_not_contain(key, value)
-    key_present = get_me_the_cookies.any? {|c| c[:name] == key}
-    value_present = get_me_the_cookies.any? {|c| c[:value] == value}
-    msg = "Unwanted cookie found: #{key}=#{value} in #{get_me_the_cookies.inspect}"
-    (key_present and value_present).should be_false, msg
-  end
 
   describe "for getting cookie hashes" do
     describe "get_me_the_cookie" do
@@ -56,6 +43,7 @@ shared_examples "the API" do
     end
   end
 
+
   describe "for manipulating cookies" do
     describe "delete_cookie(cookie_name)" do
       it "deletes a k/v pair from the session cookie" do
@@ -87,25 +75,6 @@ shared_examples "the API" do
         page.should have_content("Got cookie choc=milk")
       end
 
-      # requires entry in /etc/hosts file:
-      # 127.0.0.1 localhost.local.com
-      it "creates a cookie with path and domain" do
-        # need to first hit a page to set a cookie (selenium)
-        visit("/")
-        create_cookie("choc", "milk", path: "/", domain: ".local.com")
-        cookies_should_contain("choc", "milk")
-
-        visit("/get/choc")
-        page.should have_content("Got cookie choc=milk")
-
-        visit '/set_with_domain/choc/doublemilk'
-        cookies_should_contain("choc", "doublemilk")
-        cookies_should_not_contain('choc', 'milk')
-
-        visit("/get/choc")
-        page.should have_content("Got cookie choc=doublemilk")
-      end
-
       it "accepts symbols" do
         # need to first hit a page to set a cookie (selenium)
         visit("/")
@@ -115,28 +84,29 @@ shared_examples "the API" do
         page.should have_content("Got cookie choc=milk")
       end
 
-    describe "expire_cookies" do
-      it "removes cookies without expiry times set" do
-        visit '/set/choc/milk'
-        visit '/set/extras/hazlenut'
-        visit '/set/myopic/mice'
-        cookies_should_contain('choc', 'milk')
-        cookies_should_contain('extras', 'hazlenut')
-        cookies_should_contain('myopic','mice')
+      describe "expire_cookies" do
+        it "removes cookies without expiry times set" do
+          visit '/set/choc/milk'
+          visit '/set/extras/hazlenut'
+          visit '/set/myopic/mice'
+          cookies_should_contain('choc', 'milk')
+          cookies_should_contain('extras', 'hazlenut')
+          cookies_should_contain('myopic','mice')
 
-        expire_cookies
-        cookies_should_not_contain('choc', 'milk')
-        cookies_should_not_contain('extras', 'hazlenut')
-        cookies_should_not_contain('myopic','mice')
-      end
+          expire_cookies
+          cookies_should_not_contain('choc', 'milk')
+          cookies_should_not_contain('extras', 'hazlenut')
+          cookies_should_not_contain('myopic','mice')
+        end
 
-      it "removes cookies which are past their expiry time, or the browser does" do
-        visit '/set_stale/rotting/fruit'
-        visit '/set_persistent/fresh/vegetables'
+        it "removes cookies which are past their expiry time, or the browser does" do
+          visit '/set_stale/rotting/fruit'
+          visit '/set_persistent/fresh/vegetables'
 
-        expire_cookies
-        cookies_should_not_contain('rotting','fruit')
-        cookies_should_contain('fresh','vegetables')
+          expire_cookies
+          cookies_should_not_contain('rotting','fruit')
+          cookies_should_contain('fresh','vegetables')
+        end
       end
     end
   end
