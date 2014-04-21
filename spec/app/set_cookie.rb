@@ -5,7 +5,7 @@ get '/' do
 end
 
 get '/set/:key/:value' do
-  response.set_cookie params[:key], {:value => params[:value], :path => '/'}
+  response.set_cookie params[:key], {:value => params[:value], :path => '/', :secure => false}
   "Setting #{params[:key]}=#{params[:value]}"
 end
 
