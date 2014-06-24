@@ -18,7 +18,7 @@ You may add new drivers for your application by implementing an adapter class an
       show_me_the_cookies
 
       # returns an array of cookie hashes
-      # form: [{:name, :domain, :value, :expires, :path}]
+      # form: [{:name, :domain, :value, :expires, :path, :secure}]
       get_me_the_cookies
 
       # deletes the named cookie
