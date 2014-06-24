@@ -130,6 +130,23 @@ to your repository branch. Please run the tests, and add new ones.
 
 New drivers will be selectively accepted. Be sure that the api spec passes. If you prefer to keep the driver in your own repository send me the address and I'll add a link in the docs.
 
+### Development and running the tests
+
+    bundle install
+    bundle exec rspec
+
+If you get DNS lookup failures try this in the terminal
+
+    host lvh.me
+
+You should get a quick response of 
+
+    lvh.me has address 127.0.0.1
+
+If you don't see this your router or similar is interfering with the DNS for security reasons, blocking a loopback lookup result.
+You can get around this by changing your DNS server to [Google's public DNS service](https://developers.google.com/speed/public-dns/) 8.8.8.8 to run the tests. You can turn this off again afterwards.
+Alternatively you can add an /etc/hosts entry looping back lvh.me to 127.0.0.1.
+
 ## History, Credits, and Acknowledgements
 
 [Contributors](https://github.com/nruth/show_me_the_cookies/contributors)
