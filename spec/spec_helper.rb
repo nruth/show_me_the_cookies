@@ -8,10 +8,8 @@ RSpec.configure do |config|
   config.include ShowMeTheCookies, :type => :feature
 end
 
-# requires entry in /etc/hosts file:
-# 127.0.0.1 localhost.local.com
 Capybara.server_port = 36363
-Capybara.app_host = "http://localhost.local.com:#{Capybara.server_port}"
+Capybara.app_host = "http://subdomain.lvh.me:#{Capybara.server_port}"
 
 def cookies_should_contain(key, value)
   key_present = get_me_the_cookies.any? {|c| c[:name] == key}

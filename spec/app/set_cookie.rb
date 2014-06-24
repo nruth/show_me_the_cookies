@@ -29,6 +29,6 @@ get '/set_stale/:key/:value' do
 end
 
 get '/set_with_domain/:key/:value' do
-  response.set_cookie params[:key], {:value => params[:value], :path => '/', :domain => '.local.com'}
+  response.set_cookie params[:key], {:value => params[:value], :path => '/', :domain => '.lvh.me'}
   "Setting #{params[:key]}=#{params[:value]}"
 end

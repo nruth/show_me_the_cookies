@@ -21,21 +21,10 @@ describe "Selenium Webdriver", :type => :feature do
 end
 
 describe "options", type: :feature do
-  # around(:each) do |example|
-  #   port = Capybara.server_port
-  #   host = Capybara.app_host
-  #   # requires entry in /etc/hosts file:
-  #   # 127.0.0.1 localhost.local.com
-  #   Capybara.server_port = 36363
-  #   Capybara.app_host = "http://localhost.local.com:#{Capybara.server_port}"
-  #   example.run
-  #   Capybara.server_port = port
-  #   Capybara.app_host = host
-  # end
   it "creates a cookie with path and domain" do
     # need to first hit a page to set a cookie (selenium)
     visit("/")
-    create_cookie("choc", "milk", path: "/", domain: ".local.com")
+    create_cookie("choc", "milk", path: "/", domain: ".lvh.me")
     cookies_should_contain("choc", "milk")
 
     visit("/get/choc")
