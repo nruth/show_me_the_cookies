@@ -47,6 +47,7 @@ private
     :domain => cookie.domain,
     :value => cookie.value,
     :expires => cookie.expires,
-    :path => cookie.path}
+    :path => cookie.path,
+    :secure => cookie.secure?}
   end
 end

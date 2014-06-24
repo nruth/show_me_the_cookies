@@ -52,7 +52,7 @@ class ShowMeTheCookies::Webkit
       :value => cookie.value,
       :expires => (cookie.expires rescue nil),
       :path => cookie.path,
-      :secure => cookie.secure
+      :secure => cookie.secure.nil? ? false : true
     }
   end
 end

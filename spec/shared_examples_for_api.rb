@@ -5,7 +5,7 @@ shared_examples "the API" do
     describe "get_me_the_cookie" do
       it "returns the cookie hash" do
         visit '/set/foo/bar'
-        get_me_the_cookie('foo').should include(:name => "foo", :value => "bar", :expires => nil)
+        get_me_the_cookie('foo').should include(:name => "foo", :value => "bar", :expires => nil, :secure => false)
       end
     end
 
@@ -17,7 +17,7 @@ shared_examples "the API" do
       it "returns an array of standardised cookie hashes" do
         visit '/set/foo/bar'
         page.should have_content("Setting foo=bar")
-        get_me_the_cookies.first.should include(:name => "foo", :value => "bar", :expires => nil)
+        get_me_the_cookies.first.should include(:name => "foo", :value => "bar", :expires => nil, :secure => false)
         visit '/set/myopic/mice'
         get_me_the_cookies.length.should be(2)
       end
