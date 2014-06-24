@@ -1,5 +1,7 @@
 # Show me the cookies
 
+![Build status](https://semaphoreapp.com/api/v1/projects/9a0dc444-fd04-4187-95a7-7a07abecbad7/201807/shields_badge.png)
+
 Some helpers for poking around at your Capybara driven browser's cookies in integration tests.
 
 Supports Capybara's bundled drivers (rack-test, Selenium Webdriver) and Poltergeist (PhantomJS).
