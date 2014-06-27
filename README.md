@@ -1,6 +1,6 @@
 # Show me the cookies
 
-[![Build Status](https://semaphoreapp.com/api/v1/projects/9a0dc444-fd04-4187-95a7-7a07abecbad7/201807/shields_badge.png)](https://semaphoreapp.com/nruth/show_me_the_cookies) [![Gem Version](https://badge.fury.io/rb/show_me_the_cookies.svg)](http://badge.fury.io/rb/show_me_the_cookies) [![endorse](https://api.coderwall.com/nruth/endorsecount.png)](https://coderwall.com/nruth)
+[![Build Status](https://semaphoreapp.com/api/v1/projects/9a0dc444-fd04-4187-95a7-7a07abecbad7/201807/shields_badge.png)](https://semaphoreapp.com/nruth/show_me_the_cookies) [![Gem Version](https://badge.fury.io/rb/show_me_the_cookies.svg)](http://badge.fury.io/rb/show_me_the_cookies) [![Inline docs](http://inch-ci.org/github/nruth/show_me_the_cookies.svg?branch=master)](http://inch-ci.org/github/nruth/show_me_the_cookies) [![endorse](https://api.coderwall.com/nruth/endorsecount.png)](https://coderwall.com/nruth)
 
 Some helpers for poking around at your Capybara driven browser's cookies in integration tests.
 
