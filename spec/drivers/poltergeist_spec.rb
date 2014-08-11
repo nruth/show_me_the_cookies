@@ -10,7 +10,7 @@ describe "Poltergeist", :type => :feature do
   describe "the testing rig" do
     it "should load the sinatra app" do
       visit '/'
-      page.should have_content("Cookie setter ready")
+      expect(page).to have_content("Cookie setter ready")
     end
   end
 
