@@ -28,6 +28,12 @@ You may add new drivers for your application by implementing an adapter class an
 
       # removes session cookies and expired persistent cookies
       expire_cookies
+      
+      # creates a cookie
+      create_cookie(cookie_name, cookie_value)
+      
+      # creates a cookie for the path or domain
+      create_cookie(cookie_name, cookie_value, :path => "...", :domain => "...")
 
 
 ## Installation
