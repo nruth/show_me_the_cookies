@@ -32,3 +32,8 @@ get '/set_with_domain/:key/:value' do
   response.set_cookie params[:key], {:value => params[:value], :path => '/', :domain => '.lvh.me'}
   "Setting #{params[:key]}=#{params[:value]}"
 end
+
+get '/set_httponly/:key/:value' do
+  response.set_cookie params[:key], {:value => params[:value], :path => '/', :httponly => true}
+  "Setting httponly #{params[:key]}=#{params[:value]}"
+end

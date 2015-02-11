@@ -42,12 +42,17 @@ private
     cookie_jar.instance_variable_get(:@cookies)
   end
 
+  def httponly?(cookie)
+    (cookie.instance_variable_get(:@options) || {}).has_key?("HttpOnly")
+  end
+
   def _translate_cookie(cookie)
     {:name => cookie.name,
     :domain => cookie.domain,
     :value => cookie.value,
     :expires => cookie.expires,
     :path => cookie.path,
-    :secure => cookie.secure?}
+    :secure => cookie.secure?,
+    :httponly => httponly?(cookie)}
   end
 end

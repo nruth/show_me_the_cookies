@@ -13,5 +13,13 @@ describe "RackTest", :type => :feature do
     end
   end
 
+  describe "get_me_the_cookie" do
+    it "reads httponly option" do
+      visit "/set_httponly/foo/bar"
+      get_me_the_cookie('foo').should include(:name => "foo", :value => "bar", :httponly => true)
+    end
+  end
+
   it_behaves_like "the API"
+
 end
