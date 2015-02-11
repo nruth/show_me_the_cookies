@@ -5,6 +5,7 @@ require 'capybara-webkit'
 describe 'Webkit', type: :feature do
   before(:each) do
     Capybara.current_driver = :webkit
+    page.driver.allow_url('subdomain.lvh.me')
   end
 
   describe 'the testing rig' do
