@@ -36,7 +36,7 @@ module ShowMeTheCookies
       )
     end
 
-    private
+    protected
 
     def on_the_page?
       current_url = @browser.current_url
