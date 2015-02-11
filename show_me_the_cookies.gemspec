@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.add_dependency('capybara', '~> 2.0')
   s.add_development_dependency 'rake' # for releases
-  s.add_development_dependency 'rspec', '~> 2.0' # for testing
+  s.add_development_dependency 'rspec', '~> 3.0' # for testing
   s.add_development_dependency 'sinatra' # for testing
   s.add_development_dependency 'poltergeist' # for testing
   s.add_development_dependency 'selenium-webdriver' # removed from capy2 deps

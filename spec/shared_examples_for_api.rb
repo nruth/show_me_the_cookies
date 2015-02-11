@@ -4,21 +4,21 @@ shared_examples "the API" do
     describe "get_me_the_cookie" do
       it "returns the cookie hash" do
         visit '/set/foo/bar'
-        get_me_the_cookie('foo').should include(:name => "foo", :value => "bar", :expires => nil, :secure => false)
+        expect(get_me_the_cookie('foo')).to include(:name => "foo", :value => "bar", :expires => nil, :secure => false)
       end
     end
 
     it "returns nil for cookies that do not exist" do
-      get_me_the_cookie('some_unset_cookie').should be_nil
+      expect(get_me_the_cookie('some_unset_cookie')).to be_nil
     end
 
     describe "get_me_the_cookies" do
       it "returns an array of standardised cookie hashes" do
         visit '/set/foo/bar'
-        page.should have_content("Setting foo=bar")
-        get_me_the_cookies.first.should include(:name => "foo", :value => "bar", :expires => nil, :secure => false)
+        expect(page).to have_content("Setting foo=bar")
+        expect(get_me_the_cookies.first).to include(:name => "foo", :value => "bar", :expires => nil, :secure => false)
         visit '/set/myopic/mice'
-        get_me_the_cookies.length.should be(2)
+        expect(get_me_the_cookies.length).to be(2)
       end
     end
   end
@@ -27,7 +27,7 @@ shared_examples "the API" do
     describe "show_me_the_cookie" do
       it "inspects the cookie hash" do
         visit '/set/foo/bar'
-        should_receive(:puts).with("foo: "+get_me_the_cookie('foo').inspect)
+        expect($stdout).to receive(:puts).with("foo: "+get_me_the_cookie('foo').inspect)
         show_me_the_cookie('foo')
       end
     end
@@ -36,12 +36,11 @@ shared_examples "the API" do
       it "returns a string representation of the get_me_the_cookies hash" do
         visit '/set/foo/bar'
         visit '/set/myopic/mice'
-        should_receive(:puts).with("Cookies: "+get_me_the_cookies.inspect)
+        expect($stdout).to receive(:puts).with("Cookies: "+get_me_the_cookies.inspect)
         show_me_the_cookies
       end
     end
   end
-
 
   describe "for manipulating cookies" do
     describe "delete_cookie(cookie_name)" do
@@ -71,7 +70,7 @@ shared_examples "the API" do
         create_cookie("choc", "milk")
         visit "/get/choc"
         cookies_should_contain("choc", "milk")
-        page.should have_content("Got cookie choc=milk")
+        expect(page).to have_content("Got cookie choc=milk")
       end
 
       it "accepts symbols" do
@@ -80,7 +79,7 @@ shared_examples "the API" do
         create_cookie(:choc, :milk)
         visit "/get/choc"
         cookies_should_contain("choc", "milk")
-        page.should have_content("Got cookie choc=milk")
+        expect(page).to have_content("Got cookie choc=milk")
       end
 
       it "creates a cookie with path and domain" do
@@ -90,14 +89,14 @@ shared_examples "the API" do
         cookies_should_contain("choc", "milk")
 
         visit("/get/choc")
-        page.should have_content("Got cookie choc=milk")
+        expect(page).to have_content("Got cookie choc=milk")
 
         visit '/set_with_domain/choc/doublemilk'
         cookies_should_contain("choc", "doublemilk")
         cookies_should_not_contain('choc', 'milk')
 
         visit("/get/choc")
-        page.should have_content("Got cookie choc=doublemilk")
+        expect(page).to have_content("Got cookie choc=doublemilk")
       end
     end
 
