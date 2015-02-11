@@ -2,7 +2,7 @@
 
 [![Build Status](https://semaphoreapp.com/api/v1/projects/9a0dc444-fd04-4187-95a7-7a07abecbad7/201807/shields_badge.png)](https://semaphoreapp.com/nruth/show_me_the_cookies) [![Gem Version](https://badge.fury.io/rb/show_me_the_cookies.svg)](http://badge.fury.io/rb/show_me_the_cookies) [![Inline docs](http://inch-ci.org/github/nruth/show_me_the_cookies.svg?branch=master)](http://inch-ci.org/github/nruth/show_me_the_cookies) [![endorse](https://api.coderwall.com/nruth/endorsecount.png)](https://coderwall.com/nruth)
 
-Some helpers for poking around at your Capybara driven browser's cookies in integration tests.
+Some helpers for poking around at your Capybara driven browser's cookies in integration tests. Should have been called capybara-cookies if you go by the [rubygems naming guide](http://guides.rubygems.org/name-your-gem/).
 
 Provides drivers for rack-test, [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver)),  [Poltergeist](https://github.com/teampoltergeist/poltergeist) (PhantomJS) and [capybara-webkit](https://github.com/thoughtbot/capybara-webkit).
 You may add new drivers for your application by implementing an adapter class and calling ShowMeTheCookies.register_adapter in your test code (e.g. a spec/support file).
