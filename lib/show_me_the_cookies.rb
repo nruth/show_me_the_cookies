@@ -2,13 +2,14 @@ module ShowMeTheCookies
   require 'show_me_the_cookies/adapters/rack_test'
   require 'show_me_the_cookies/adapters/poltergeist'
   require 'show_me_the_cookies/adapters/selenium'
+  require 'show_me_the_cookies/adapters/selenium_chrome'
   require 'show_me_the_cookies/adapters/webkit'
 
   @adapters = {}
   class << self
     attr_reader :adapters
 
-    # Register your own capybara-driver cookie adapter. 
+    # Register your own capybara-driver cookie adapter.
     # Use the same name as the one Capybara does to identify that driver.
     # Implement the interface of spec/shared_examples_for_api, as seen in lib/show_me_the_cookies/drivers
     def register_adapter(driver, adapter)
@@ -18,6 +19,7 @@ module ShowMeTheCookies
 
   # to register your own adapter/driver do this in your test setup code somewhere e.g. spec/support
   register_adapter(:selenium, ShowMeTheCookies::Selenium)
+  register_adapter(:selenium_chrome, ShowMeTheCookies::SeleniumChrome)
   register_adapter(:rack_test, ShowMeTheCookies::RackTest)
   register_adapter(:poltergeist, ShowMeTheCookies::Poltergeist)
   register_adapter(:webkit, ShowMeTheCookies::Webkit)
