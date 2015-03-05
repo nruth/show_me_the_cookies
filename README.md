@@ -45,7 +45,7 @@ Add to your gemfile's test group:
 
 ## RSpec
 
-in step_helper or your support directory:
+in spec_helper/rails_helper or your required support directory:
 
     RSpec.configure do |config|
       config.include ShowMeTheCookies, :type => :feature
