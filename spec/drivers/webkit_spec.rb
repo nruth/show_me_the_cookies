@@ -2,10 +2,13 @@ require 'spec_helper'
 require 'shared_examples_for_api'
 require 'capybara-webkit'
 
+Capybara::Webkit.configure do |config|
+  config.allow_url("subdomain.lvh.me")
+end
+
 describe 'Webkit', type: :feature do
   before(:each) do
     Capybara.current_driver = :webkit
-    page.driver.allow_url('subdomain.lvh.me')
   end
 
   describe 'the testing rig' do

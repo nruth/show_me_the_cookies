@@ -1,7 +1,6 @@
 module ShowMeTheCookies
   class Webkit
     def initialize(driver)
-      @browser = driver.browser
       @driver = driver
     end
 
@@ -23,16 +22,16 @@ module ShowMeTheCookies
     # Since QTWebkit doesn't seem to offer deletion, clearing all and re-setting the rest seems to be it
     def delete_cookie(name)
       old_cookies = cookies
-      @browser.clear_cookies
+      @driver.clear_cookies
       old_cookies.each do |cookie|
-        @browser.set_cookie(cookie) unless cookie.name == name.to_s
+        @driver.set_cookie(cookie) unless cookie.name == name.to_s
       end
     end
 
     def create_cookie(name, value, options)
       host = options.delete(:domain) || (Capybara.app_host ? URI(Capybara.app_host).host : '127.0.0.1')
       puts "Webkit create_cookie options not supported: #{options.inspect}" if options && (options != {})
-      @browser.set_cookie("#{name}=#{value}; domain=#{host}")
+      @driver.set_cookie("#{name}=#{value}; domain=#{host}")
     end
 
     private
@@ -43,7 +42,7 @@ module ShowMeTheCookies
     end
 
     def cookies
-      @browser.get_cookies.map { |c| WEBrick::Cookie.parse_set_cookie(c) }
+      cookie_jar.send("cookies")
     end
 
     def translate(cookie)
