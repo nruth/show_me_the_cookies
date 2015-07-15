@@ -10,6 +10,7 @@ end
 
 Capybara.server_port = 36363
 Capybara.app_host = "http://subdomain.lvh.me:#{Capybara.server_port}"
+Capybara.default_host = Capybara.app_host
 
 def cookies_should_contain(key, value)
   key_present = get_me_the_cookies.any? {|c| c[:name] == key}
