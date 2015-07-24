@@ -4,7 +4,7 @@
 
 Some helpers for poking around at your Capybara driven browser's cookies in integration tests. Should have been called capybara-cookies if you go by the [rubygems naming guide](http://guides.rubygems.org/name-your-gem/).
 
-Provides drivers for rack-test, [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver)),  [Poltergeist](https://github.com/teampoltergeist/poltergeist) (PhantomJS) and [capybara-webkit](https://github.com/thoughtbot/capybara-webkit).
+Provides drivers for rack-test, [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver),  [Poltergeist](https://github.com/teampoltergeist/poltergeist) (PhantomJS) and [capybara-webkit](https://github.com/thoughtbot/capybara-webkit).
 You may add new drivers for your application by implementing an adapter class and calling ShowMeTheCookies.register_adapter in your test code (e.g. a spec/support file).
 
 ## API
