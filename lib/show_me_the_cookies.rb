@@ -23,6 +23,7 @@ module ShowMeTheCookies
   register_adapter(:rack_test, ShowMeTheCookies::RackTest)
   register_adapter(:poltergeist, ShowMeTheCookies::Poltergeist)
   register_adapter(:webkit, ShowMeTheCookies::Webkit)
+  register_adapter(:webkit_debug, ShowMeTheCookies::Webkit)
 
   # puts a string summary of the cookie
   def show_me_the_cookie(cookie_name)
