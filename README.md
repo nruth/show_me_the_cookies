@@ -1,6 +1,6 @@
 # Show me the cookies
 
-[![Build Status](https://semaphoreapp.com/api/v1/projects/9a0dc444-fd04-4187-95a7-7a07abecbad7/201807/shields_badge.png)](https://semaphoreapp.com/nruth/show_me_the_cookies) [![Gem Version](https://badge.fury.io/rb/show_me_the_cookies.svg)](http://badge.fury.io/rb/show_me_the_cookies) [![Inline docs](http://inch-ci.org/github/nruth/show_me_the_cookies.svg?branch=master)](http://inch-ci.org/github/nruth/show_me_the_cookies) [![endorse](https://api.coderwall.com/nruth/endorsecount.png)](https://coderwall.com/nruth)
+[![Build Status](https://semaphoreapp.com/api/v1/projects/9a0dc444-fd04-4187-95a7-7a07abecbad7/201807/shields_badge.png)](https://semaphoreapp.com/nruth/show_me_the_cookies) [![Gem Version](https://badge.fury.io/rb/show_me_the_cookies.svg)](http://badge.fury.io/rb/show_me_the_cookies)
 
 Some helpers for poking around at your Capybara driven browser's cookies in integration tests. Should have been called capybara-cookies if you go by the [rubygems naming guide](http://guides.rubygems.org/name-your-gem/).
 
@@ -28,10 +28,10 @@ You may add new drivers for your application by implementing an adapter class an
 
       # removes session cookies and expired persistent cookies
       expire_cookies
-      
+
       # creates a cookie
       create_cookie(cookie_name, cookie_value)
-      
+
       # creates a cookie for the path or domain
       create_cookie(cookie_name, cookie_value, :path => "...", :domain => "...")
 
@@ -51,9 +51,7 @@ in spec_helper/rails_helper or your required support directory:
       config.include ShowMeTheCookies, :type => :feature
     end
 
-### Example usage
-
-In a request spec, using [Capybara](https://github.com/jnicklas/capybara)
+Then, in a feature spec using [Capybara](https://github.com/jnicklas/capybara):
 
     specify "user login is remembered across browser restarts" do
       log_in_as_user
@@ -145,7 +143,7 @@ If you get DNS lookup failures try this in the terminal
 
     host lvh.me
 
-You should get a quick response of 
+You should get a quick response of
 
     lvh.me has address 127.0.0.1
 
