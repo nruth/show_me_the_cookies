@@ -6,6 +6,8 @@ module ShowMeTheCookies
 
     def get_me_the_cookie(cookie_name)
       @browser.manage.cookie_named(cookie_name)
+    rescue ::Selenium::WebDriver::Error::NoSuchCookieError
+      nil
     end
 
     def get_me_the_cookies
