@@ -1,10 +1,18 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
+require "selenium/webdriver"
 
 Capybara.register_driver :selenium_chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: { args: %w(headless disable-gpu) },
+  )
 
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    desired_capabilities: capabilities,
+  )
+end
 
 RSpec.describe 'Selenium Webdriver Chrome', type: :feature do
   before(:each) do
