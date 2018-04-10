@@ -1,5 +1,8 @@
 require 'capybara/rspec'
 
+# puma dependency unnecessary for this small project, just use stdlib
+Capybara.server = :webrick
+
 require File.join(File.dirname(__FILE__), *%w(app set_cookie))
 Capybara.app = Sinatra::Application
 
