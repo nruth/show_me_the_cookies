@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'shared_examples_for_api'
 require 'capybara/poltergeist'
 
-describe 'Poltergeist', type: :feature do
+RSpec.describe 'Poltergeist', type: :feature do
   before(:each) do
     Capybara.current_driver = :poltergeist
   end

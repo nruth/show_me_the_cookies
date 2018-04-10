@@ -6,7 +6,7 @@ Capybara.register_driver :selenium_chrome do |app|
 end
 
 
-describe 'Selenium Webdriver Chrome', type: :feature do
+RSpec.describe 'Selenium Webdriver Chrome', type: :feature do
   before(:each) do
     Capybara.current_driver = :selenium_chrome
   end

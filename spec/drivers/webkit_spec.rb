@@ -6,7 +6,7 @@ Capybara::Webkit.configure do |config|
   config.allow_url("subdomain.lvh.me")
 end
 
-describe 'Webkit', type: :feature do
+RSpec.describe 'Webkit', type: :feature do
   before(:each) do
     Capybara.current_driver = :webkit
   end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
 
-describe 'RackTest', type: :feature do
+RSpec.describe 'RackTest', type: :feature do
   before(:each) do
     Capybara.current_driver = :rack_test
   end

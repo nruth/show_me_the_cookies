@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
 
-describe 'RackTest when rack-test adapter uninstalled', type: :feature do
+RSpec.describe 'RackTest when rack-test adapter uninstalled', type: :feature do
   before(:each) do
     Capybara.current_driver = :rack_test
     ShowMeTheCookies.register_adapter(:rack_test, nil)

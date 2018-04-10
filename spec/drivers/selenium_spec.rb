@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
 
-describe 'Selenium Webdriver Firefox', type: :feature do
+RSpec.describe 'Selenium Webdriver Firefox', type: :feature do
   before(:each) do
     Capybara.current_driver = :selenium
   end
