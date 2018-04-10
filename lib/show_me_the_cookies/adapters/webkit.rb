@@ -31,7 +31,7 @@ module ShowMeTheCookies
     def create_cookie(name, value, options)
       host = options.delete(:domain) || (Capybara.app_host ? URI(Capybara.app_host).host : '127.0.0.1')
       puts "Webkit create_cookie options not supported: #{options.inspect}" if options && (options != {})
-      @driver.set_cookie("#{name}=#{value}; domain=#{host}")
+      @driver.set_cookie("#{name}=#{Rack::Utils.escape(value)}; domain=#{host}")
     end
 
     private
