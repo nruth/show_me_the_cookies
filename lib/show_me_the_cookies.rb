@@ -22,6 +22,7 @@ module ShowMeTheCookies
   register_adapter(:selenium_chrome, ShowMeTheCookies::SeleniumChrome)
   register_adapter(:rack_test, ShowMeTheCookies::RackTest)
   register_adapter(:poltergeist, ShowMeTheCookies::Poltergeist)
+  register_adapter(:phantomjs, ShowMeTheCookies::Poltergeist)
   register_adapter(:webkit, ShowMeTheCookies::Webkit)
   register_adapter(:webkit_debug, ShowMeTheCookies::Webkit)
 
