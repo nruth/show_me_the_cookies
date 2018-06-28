@@ -7,7 +7,7 @@ gem 'rake' # for releases
 
 group :test do
   gem 'rspec', '~> 3.0'
-  gem 'poltergeist', git: 'https://github.com/teampoltergeist/poltergeist', ref: 'f822d3a'
+  gem 'poltergeist'
   gem 'sinatra'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper' # chromedriver installer
