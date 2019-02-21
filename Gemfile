@@ -11,5 +11,4 @@ group :test do
   gem 'sinatra'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper' # chromedriver installer
-  gem 'capybara-webkit'
 end

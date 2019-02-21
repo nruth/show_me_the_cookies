@@ -1,3 +1,11 @@
+# 5.0
+
+Capybara-webkit removed due to obsolescence and maintenance difficulty.
+Setting up capybara-webkit and qt has never been fun, but now it's getting
+silly: According to the [capybara-webkit wiki](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit) Qt has removed the necessary webkit bindings, and homebrew has removed the old version of qt that still had them.
+
+New / current projects should switch to headless Chrome or Firefox with webdriver, which will work with the existing adapters, but if you need the webkit driver for legacy apps stick with version 4, or copy the adapter from version 4 into your app's test support code. 
+
 # 4.0
 
 Changes some cookie escaping logic & supports capybara 3.
