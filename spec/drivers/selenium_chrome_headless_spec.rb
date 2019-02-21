@@ -1,8 +1,8 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
 
-RSpec.describe 'Selenium Webdriver Chrome', type: :feature,
-  driver: :selenium_chrome do
+RSpec.describe 'Selenium Webdriver Headless Chrome', type: :feature,
+  driver: :selenium_chrome_headless do
 
   describe 'the testing rig' do
     it 'should load the sinatra app' do

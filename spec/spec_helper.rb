@@ -1,5 +1,11 @@
 require 'capybara/rspec'
 
+# load chromedriver-helper so it sets the path to the chromedriver executable
+# otherwise get errors like
+# "unable to connect to chromedriver 127.0.0.1:9515 (Selenium::WebDriver::Error::WebDriverError)" 
+# when Selenium runs the wrong executable
+require 'chromedriver-helper'
+
 # puma dependency unnecessary for this small project, just use stdlib
 Capybara.server = :webrick
 

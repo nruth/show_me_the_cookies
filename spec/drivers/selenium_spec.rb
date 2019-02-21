@@ -1,19 +1,7 @@
 require 'spec_helper'
 require 'shared_examples_for_api'
-require 'selenium-webdriver'
 
-
-
-Capybara.register_driver :selenium do |app|
-  options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless'])
-  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
-end
-
-RSpec.describe 'Selenium Webdriver Firefox', type: :feature do
-  before(:each) do
-    Capybara.current_driver = :selenium
-  end
-
+RSpec.describe 'Selenium Webdriver Firefox', type: :feature, driver: :selenium do
   describe 'the testing rig' do
     it 'should load the sinatra app' do
       visit '/'

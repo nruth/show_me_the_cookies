@@ -18,7 +18,9 @@ module ShowMeTheCookies
 
   # to register your own adapter/driver do this in your test setup code somewhere e.g. spec/support
   register_adapter(:selenium, ShowMeTheCookies::Selenium)
+  register_adapter(:selenium_headless, ShowMeTheCookies::Selenium)
   register_adapter(:selenium_chrome, ShowMeTheCookies::SeleniumChrome)
+  register_adapter(:selenium_chrome_headless, ShowMeTheCookies::SeleniumChrome)
   register_adapter(:rack_test, ShowMeTheCookies::RackTest)
   register_adapter(:poltergeist, ShowMeTheCookies::Poltergeist)
 
