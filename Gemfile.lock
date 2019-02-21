@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    show_me_the_cookies (4.0.0)
+    show_me_the_cookies (5.0.0)
       capybara (>= 2, < 4)
 
 GEM
