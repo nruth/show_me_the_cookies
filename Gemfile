@@ -10,5 +10,5 @@ group :test do
   gem 'poltergeist'
   gem 'sinatra'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper' # chromedriver installer
+  gem 'webdrivers', '~> 4.0' # chromedriver installer
 end

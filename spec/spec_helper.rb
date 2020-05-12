@@ -1,15 +1,11 @@
 require 'capybara/rspec'
 
-# load chromedriver-helper so it sets the path to the chromedriver executable
-# otherwise get errors like
-# "unable to connect to chromedriver 127.0.0.1:9515 (Selenium::WebDriver::Error::WebDriverError)" 
-# when Selenium runs the wrong executable
-require 'chromedriver-helper'
+require 'webdrivers'
 
 # puma dependency unnecessary for this small project, just use stdlib
 Capybara.server = :webrick
 
-require File.join(File.dirname(__FILE__), *%w(app set_cookie))
+require File.join(File.dirname(__FILE__), "app", "set_cookie")
 Capybara.app = Sinatra::Application
 
 require 'show_me_the_cookies'
