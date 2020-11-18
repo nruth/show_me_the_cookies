@@ -8,6 +8,7 @@ gem 'rake' # for releases
 group :test do
   gem 'rspec', '~> 3.0'
   gem 'sinatra'
+  gem 'cuprite'
   gem 'selenium-webdriver'
   gem 'webdrivers', require: false # chromedriver installer
 end
