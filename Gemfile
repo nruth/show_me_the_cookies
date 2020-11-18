@@ -9,6 +9,7 @@ group :test do
   gem 'rspec', '~> 3.0'
   gem 'poltergeist'
   gem 'sinatra'
+  gem 'cuprite'
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 4.0' # chromedriver installer
 end
