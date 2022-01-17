@@ -1,6 +1,7 @@
 # 5.0.1
 
-## Gem development dependencies
+## Gem development dependencies
+
 chromedriver-helper -> webdrivers. Bundler -> 2.0.2. Should not affect your app.
 
 # 5.0
