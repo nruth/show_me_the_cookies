@@ -36,7 +36,7 @@ module ShowMeTheCookies
 
   private
     def cookie_jar
-      @rack_test_driver.browser.current_session.instance_variable_get(:@rack_mock_session).cookie_jar
+      @rack_test_driver.browser.current_session.cookie_jar
     end
 
     def cookies
