@@ -1,4 +1,4 @@
-shared_examples "the API" do
+RSpec.shared_examples "the API" do
 
   describe "for getting cookie hashes" do
     describe "get_me_the_cookie" do
