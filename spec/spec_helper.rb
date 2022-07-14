@@ -11,6 +11,7 @@ Capybara.app = Sinatra::Application
 require 'show_me_the_cookies'
 RSpec.configure do |config|
   config.include(ShowMeTheCookies, type: :feature)
+  config.disable_monkey_patching!
 end
 
 Capybara.server_port = 36363
