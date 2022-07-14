@@ -1,3 +1,9 @@
+# 6.0.0
+
+## Breaking change: Poltergeist removed
+
+It's been obsolete for a while now. If you still need it, you can copy the driver / registration into your app's test code.
+
 # 5.0.1
 
 ## Gem development dependencies
