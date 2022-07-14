@@ -4,6 +4,13 @@
 
 It's been obsolete for a while now. If you still need it, you can copy the driver / registration into your app's test code.
 
+## Fix incompatibility with rack-test 2.0
+
+Thanks juno. https://github.com/nruth/show_me_the_cookies/pull/64
+This will likely break rack-test 1.x as it uses new methods/API to get the cookie store.
+To restore that, override the changed code in your test setup, or register a custom
+rack-test1 driver based on the old code.
+
 # 5.0.1
 
 ## Gem development dependencies
