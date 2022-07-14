@@ -9,5 +9,5 @@ group :test do
   gem 'rspec', '~> 3.0'
   gem 'sinatra'
   gem 'selenium-webdriver'
-  gem 'webdrivers', '~> 4.0' # chromedriver installer
+  gem 'webdrivers', require: false # chromedriver installer
 end
