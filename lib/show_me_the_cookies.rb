@@ -1,6 +1,5 @@
 module ShowMeTheCookies
   require 'show_me_the_cookies/adapters/rack_test'
-  require 'show_me_the_cookies/adapters/poltergeist'
   require 'show_me_the_cookies/adapters/selenium'
   require 'show_me_the_cookies/adapters/selenium_chrome'
 
@@ -22,7 +21,6 @@ module ShowMeTheCookies
   register_adapter(:selenium_chrome, ShowMeTheCookies::SeleniumChrome)
   register_adapter(:selenium_chrome_headless, ShowMeTheCookies::SeleniumChrome)
   register_adapter(:rack_test, ShowMeTheCookies::RackTest)
-  register_adapter(:poltergeist, ShowMeTheCookies::Poltergeist)
 
   # puts a string summary of the cookie
   def show_me_the_cookie(cookie_name)
