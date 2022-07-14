@@ -11,7 +11,8 @@ blocks:
         - name: bundle install
           commands:
             - checkout
-            - sem-version ruby 2.7.3
+            - sudo apt-get update -y firefox
             - sudo apt-get install -y firefox
+            - sem-version ruby 2.7.3
             - bundle install --deployment --path vendor/bundle
             - bundle exec rspec
