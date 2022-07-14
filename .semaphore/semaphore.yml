@@ -1,0 +1,17 @@
+version: v1.0
+name: Ruby
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: bundle exec rspec
+    task:
+      jobs:
+        - name: bundle install
+          commands:
+            - checkout
+            - sem-version ruby 2.7.3
+            - sudo apt-get install -y firefox
+            - bundle install --deployment --path vendor/bundle
+            - bundle exec rspec
