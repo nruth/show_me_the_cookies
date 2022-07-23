@@ -11,4 +11,5 @@ group :test do
   gem 'cuprite'
   gem 'selenium-webdriver'
   gem 'webdrivers', require: false # chromedriver installer
+  gem 'webrick' if RUBY_VERSION >= '3'
 end
