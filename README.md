@@ -63,6 +63,29 @@ Then, in a feature spec using [Capybara](https://github.com/jnicklas/capybara):
     end
 
 
+## Rails
+
+include `ShowMeTheCookies` in your `ApplicationSystemTestCase`
+
+    class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+      include ShowMeTheCookies
+    end
+
+and use it in your system tests
+
+    require "application_system_test_case"
+
+    class LoginSystemTest < ApplicationSystemTestCase
+      test "user login is remembered across browser restarts" do
+        log_in_as_user
+        should_be_logged_in
+        #browser restart = session cookie is lost
+        expire_cookies
+        should_be_logged_in
+      end
+    end
+
+
 ## Cucumber
 
 
