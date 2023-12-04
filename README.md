@@ -152,6 +152,14 @@ If you don't see this your router or similar is interfering with the DNS for sec
 You can get around this by changing your DNS server to [Google's public DNS service](https://developers.google.com/speed/public-dns/) 8.8.8.8 to run the tests. You can turn this off again afterwards.
 Alternatively you can add an /etc/hosts entry looping back lvh.me to 127.0.0.1.
 
+If you get firefox webdriver errors, try installing geckodriver with homebrew. Or play around
+with selenium-webdriver.
+
+If you get Chrome vs chromedriver incompatibilities, try downloading/installing "Google Chrome For Testing"
+and set SE_CHROME_PATH="/wherever/you/installed/it", e.g. on a Mac you might run
+`SE_CHROME_PATH="/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing" bundle exec rspec`
+
+
 ## History, Credits, and Acknowledgements
 
 [Contributors](https://github.com/nruth/show_me_the_cookies/contributors)
