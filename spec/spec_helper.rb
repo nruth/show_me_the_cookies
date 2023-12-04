@@ -1,7 +1,5 @@
 require 'capybara/rspec'
 
-require 'webdrivers'
-
 # puma dependency unnecessary for this small project, just use stdlib
 Capybara.server = :webrick
 
