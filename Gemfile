@@ -10,4 +10,5 @@ group :test do
   gem 'sinatra'
   gem 'selenium-webdriver'
   gem 'webdrivers', require: false # chromedriver installer
+  gem 'webrick'
 end
