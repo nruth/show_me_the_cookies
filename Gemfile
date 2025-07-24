@@ -11,4 +11,5 @@ group :test do
   gem 'cuprite'
   gem 'selenium-webdriver'
   gem 'webrick'
+  gem 'rackup'
 end
