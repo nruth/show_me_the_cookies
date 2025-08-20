@@ -1,5 +1,9 @@
 require 'sinatra'
 
+configure(:development, :test) do
+  set host_authorization: {permitted_hosts: ['subdomain.lvh.me', 'lvh.me']}
+end
+
 get '/' do
   "Cookie setter ready"
 end

@@ -6,14 +6,15 @@ Capybara.server = :webrick
 require File.join(File.dirname(__FILE__), "app", "set_cookie")
 Capybara.app = Sinatra::Application
 
+Capybara.server_port = 36363
+Capybara.app_host = "http://subdomain.lvh.me:#{Capybara.server_port}"
+# the Sinatra app's rack-protection also needs to permit this host in dev/test
+
 require 'show_me_the_cookies'
 RSpec.configure do |config|
   config.include(ShowMeTheCookies, type: :feature)
   config.disable_monkey_patching!
 end
-
-Capybara.server_port = 36363
-Capybara.app_host = "http://subdomain.lvh.me:#{Capybara.server_port}"
 
 def cookies_should_contain(key, value)
   key_present = get_me_the_cookies.any? {|c| c[:name] == key}

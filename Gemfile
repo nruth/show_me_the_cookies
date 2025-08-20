@@ -10,4 +10,5 @@ group :test do
   gem 'sinatra'
   gem 'selenium-webdriver'
   gem 'webrick'
+  gem 'rackup'
 end
