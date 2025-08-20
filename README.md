@@ -1,6 +1,10 @@
-# Show me the cookies
+# Deprecated
 
-[![Build Status](https://semaphoreci.com/api/v1/projects/9a0dc444-fd04-4187-95a7-7a07abecbad7/201807/shields_badge.svg)](https://semaphoreci.com/nruth/show_me_the_cookies) [![Gem Version](https://badge.fury.io/rb/show_me_the_cookies.svg)](http://badge.fury.io/rb/show_me_the_cookies)
+This gem is unmaintained. Do not add it to new projects.
+
+If you already use it, my first suggestion is rewrite the affected tests to not use it. If you need the driver switching things, feel free to copy and modify the files out of lib into your project's test helpers as needed. 
+
+# Show me the cookies
 
 Some helpers for poking around at your Capybara driven browser's cookies in integration tests.
 
